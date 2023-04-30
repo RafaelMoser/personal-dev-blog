@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import InformationBar from "../modules/information-bar/InformationBar";
+import InformationBar from "../modules/InformationBar";
 
 const RootLayout = () => {
   return (
