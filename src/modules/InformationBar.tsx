@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import profileImage from "../assets/126586126.png";
 
 const InformationBar = () => {

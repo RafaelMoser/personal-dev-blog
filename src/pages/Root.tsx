@@ -3,12 +3,12 @@ import InformationBar from "../modules/InformationBar";
 
 const RootLayout = () => {
   return (
-    <>
+    <div className="relative">
       <InformationBar />
-      <main>
+      <main className="w-full h-screen">
         <Outlet />
       </main>
-    </>
+    </div>
   );
 };
 
