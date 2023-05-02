@@ -1,10 +1,33 @@
+import { useState } from "react";
+import { FaChevronLeft } from "react-icons/fa";
+
 import profileImage from "../assets/126586126.png";
 
 const InformationBar = () => {
+  const [showInfoBar, setShowInfoBar] = useState(true);
+
+  const showInfoBarHandler = () => {
+    setShowInfoBar(!showInfoBar);
+  };
+
   return (
-    <div className="fixed top-0 left-0 flex flex-col space-y-8 align-middle w-60 h-screen bg-slate-400 p-8">
+    <div
+      className={`transition-all ease-in-out duration-500
+      fixed top-0 flex flex-col space-y-8 align-middle w-60 h-screen bg-slate-400 p-8 ${
+        showInfoBar ? "left-0" : "-left-56"
+      }`}
+    >
+      <button
+        className={`transition-all ease-in-out duration-500 absolute top-10 left-56 rounded-full
+         bg-slate-300 border-slate-500 border-4 w-8 h-8 flex justify-center items-center ${
+           showInfoBar ? "" : "rotate-180"
+         }`}
+        onClick={showInfoBarHandler}
+      >
+        <FaChevronLeft />
+      </button>
       <img
-        className="rounded-full align-middle shadow-2xl"
+        className="rounded-full align-middle shadow-2xl border-4 border-slate-500"
         src={profileImage}
       />
       <LinkButtons />
