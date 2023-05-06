@@ -1,10 +1,11 @@
 export const LinkButtons = () => {
-  const buttons = ["💣", "🖥", "🎮", "💣"];
+  const buttons = ["💣", "🖥", "🎮"];
 
   return (
     <div className="h-8 flex flex-row justify-stretch rounded-xl shadow-md divide-x divide-slate-800">
       {buttons.map((button, index) => (
         <a
+          key={button}
           href="https://github.com/RafaelMoser/"
           target="_blank"
           rel="noopener noreferrer"
