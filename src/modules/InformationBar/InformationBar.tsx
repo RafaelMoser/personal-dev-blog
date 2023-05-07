@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 
-import profileImage from "@/assets/126586126.png";
 import { LinkButtons } from "./LinkButtons";
+import axios from "axios";
+import { useLoaderData } from "react-router-dom";
+
+type ProfileData = {
+  profileImageUrl: string;
+  infoBlurb: string;
+  github?: string;
+  linkedIn?: string;
+};
 
 const InformationBar = () => {
   const [showInfoBar, setShowInfoBar] = useState(true);
+
+  const { profileImageUrl, infoBlurb, github, linkedIn } =
+    useLoaderData() as ProfileData;
 
   const showInfoBarHandler = () => {
     setShowInfoBar(!showInfoBar);
@@ -27,19 +38,23 @@ const InformationBar = () => {
       >
         <FaChevronLeft />
       </button>
-      <img
-        className="rounded-full align-middle shadow-2xl border-4 border-slate-500"
-        src={profileImage}
-      />
-      <LinkButtons />
-      <span className="h-0.5 w-full bg-slate-800" />
-      <div className="text-center text-sm font-mono">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita
-        architecto libero nobis, sunt ullam illum quasi dicta sint quia odit
-        dolorum, quod praesentium labore cupiditate ipsam sed ea officia non!
+      <div className="rounded-full align-middle shadow-2xl border-4 border-slate-500 z-50">
+        <img
+          className="rounded-full align-middle w-auto h-auto"
+          src={profileImageUrl}
+        />
       </div>
+      <LinkButtons github={github} linkedin={linkedIn} />
+      <span className="h-0.5 w-full bg-slate-800" />
+      <div className="text-center text-sm font-mono">{infoBlurb}</div>
     </div>
   );
 };
 
 export default InformationBar;
+
+export const InfoBarLoader = async () => {
+  return await axios
+    .get("http://localhost:5000/aboutme/")
+    .then((res) => res.data);
+};
