@@ -12,8 +12,6 @@ export const LinkButtons = (props: Props) => {
     { link: props.linkedin, icon: <FaLinkedin /> },
   ];
 
-  console.log(buttons);
-
   return (
     <div className="h-8 flex flex-row justify-stretch rounded-xl shadow-md divide-x divide-slate-800">
       {buttons.map(

@@ -1,26 +1,26 @@
-import ArticleContainer from "../modules/ArticleContainer";
+import { Await, defer, useLoaderData } from "react-router-dom";
+import axios from "axios";
+import { Suspense } from "react";
+import ArticleList, { Article } from "../modules/ArticleList";
 
-const APREV = {
-  title: "lorem of the ipsum",
-  body:
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, dignissimos dolore ullam nulla," +
-    " possimus, atque perferendis beatae facere dolor nisi eligendi quia iste ad quasi repudiandae nesciunt blanditiis vitae voluptas." +
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, dignissimos dolore ullam nulla," +
-    " possimus, atque perferendis beatae facere dolor nisi eligendi quia iste ad quasi repudiandae nesciunt blanditiis vitae voluptas." +
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum, dignissimos dolore ullam nulla," +
-    " possimus, atque perferendis beatae facere dolor nisi eligendi quia iste ad quasi repudiandae nesciunt blanditiis vitae voluptas.",
+type ArticleList = {
+  articles: Article[];
 };
 
 const Home = () => {
+  const { articles } = useLoaderData() as ArticleList;
+
   return (
     <div className="bg-white w-full h-full">
       <h1 className="text-5xl font-mono font-bold text-center py-10">
         PAGE TITLE
       </h1>
       <div className="flex flex-col space-y-8 items-center">
-        <ArticleContainer articleTitle={APREV.title} articleText={APREV.body} />
-        <ArticleContainer articleTitle={APREV.title} articleText={APREV.body} />
-        <ArticleContainer articleTitle={APREV.title} articleText={APREV.body} />
+        <Suspense fallback={<p className="text-5xl">loading</p>}>
+          <Await resolve={articles}>
+            {(loadedArticles) => <ArticleList articles={loadedArticles} />}
+          </Await>
+        </Suspense>
       </div>
     </div>
   );
