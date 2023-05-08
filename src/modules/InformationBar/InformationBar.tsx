@@ -52,9 +52,3 @@ const InformationBar = () => {
 };
 
 export default InformationBar;
-
-export const InfoBarLoader = async () => {
-  return await axios
-    .get("http://localhost:5000/aboutme/")
-    .then((res) => res.data);
-};
