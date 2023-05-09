@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 type Props = {
   pageCount: number;
   currentPage: number;
@@ -9,7 +11,7 @@ type Props = {
 const PagePicker = (props: Props) => {
   let leftPagePicker = false;
   let rightPagePicker = false;
-
+  const baseLink = `http://${window.location.hostname}/page/`;
   const shouldRender = (page: number) => {
     return (
       page === 1 ||
@@ -26,7 +28,7 @@ const PagePicker = (props: Props) => {
         className="w-6 h-6 flex justify-center items-center 
     rounded-2xl bg-slate-700 shadow-inner shadow-slate-800"
       >
-        prev
+        <Link to={`${baseLink}${props.currentPage - 1}`}>prev</Link>
       </div>
     );
   }
@@ -46,7 +48,7 @@ const PagePicker = (props: Props) => {
           className="w-6 h-6 flex justify-center items-center 
     rounded-2xl bg-slate-700 shadow-inner shadow-slate-800"
         >
-          {index}
+          <Link to={`${baseLink}${index}`}>{index}</Link>
         </div>
       );
     } else if (index < props.currentPage && leftPagePicker) {
@@ -63,7 +65,7 @@ const PagePicker = (props: Props) => {
         className="w-6 h-6 flex justify-center items-center 
     rounded-2xl bg-slate-700 shadow-inner shadow-slate-800"
       >
-        next
+        <Link to={`${baseLink}${props.currentPage + 1}`}>next</Link>
       </div>
     );
   }

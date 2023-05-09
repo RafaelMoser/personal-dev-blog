@@ -1,4 +1,4 @@
-import { Await, useLoaderData, useRouteLoaderData } from "react-router-dom";
+import { Await, useRouteLoaderData } from "react-router-dom";
 import { Suspense } from "react";
 import ArticleList, { Article } from "../modules/Article/ArticleList";
 
