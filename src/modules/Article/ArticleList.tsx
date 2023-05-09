@@ -10,7 +10,6 @@ export type Article = {
 type Props = { articles: Article[] };
 
 const ArticleList = (props: Props) => {
-  console.log(props.articles);
   return (
     <>
       {props.articles.map((article) => (
