@@ -2,7 +2,6 @@ import { useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 
 import { LinkButtons } from "./LinkButtons";
-import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 
 type ProfileData = {
