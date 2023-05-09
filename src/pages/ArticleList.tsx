@@ -4,6 +4,7 @@ import ArticleList, { Article } from "../modules/Article/ArticleList";
 
 type ArticleList = {
   articles: Article[];
+  pageCount: number;
 };
 
 const ArticleListPage = () => {
