@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/Root";
-import HomePage from "./pages/Home";
+import ArticleListPage from "./pages/ArticleList";
 import AboutMePage from "./pages/AboutMe";
 import { articlePageLoader, infoBarLoader } from "./loaders/MainPageLoaders";
 import ErrorPage from "./pages/Error";
+import HomePage from "./pages/Home";
 
 const BLOG_NAME = "Rafael Moser's dev blog";
 
@@ -15,16 +16,17 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <HomePage pageTitle={BLOG_NAME} />,
+        element: <HomePage blogTitle={BLOG_NAME} />,
+        id: "home",
         loader: articlePageLoader,
+        children: [
+          { path: "/", element: <ArticleListPage /> },
+          { path: "/home", element: <ArticleListPage /> },
+          { path: "/page/", element: <ArticleListPage /> },
+          { path: "/page/:page", element: <ArticleListPage /> },
+          { path: "/article/:id" },
+        ],
       },
-      {
-        path: "/page/:page",
-        element: <HomePage pageTitle={BLOG_NAME} />,
-        loader: articlePageLoader,
-      },
-      { path: "/article/:id" },
       { path: "/aboutme", element: <AboutMePage /> },
     ],
   },
