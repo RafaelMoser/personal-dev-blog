@@ -22,12 +22,11 @@ export const LinkButtons = (props: Props) => {
               href={button.link}
               target="_blank"
               rel="noopener noreferrer"
-              className={`text-center grow 
-          bg-gradient-to-b from-slate-700 via-slate-500 to-slate-700 
-          hover:from-slate-700 hover:via-slate-400 hover:to-slate-700 
-          active:from-slate-700 active:via-slate-800 active:to-slate-700 
-          ${index == 0 ? "rounded-l-xl" : ""}
-          ${index == buttons.length - 1 ? "rounded-r-xl" : ""}`}
+              className="text-center grow 
+                bg-gradient-to-b from-slate-700 via-slate-500 to-slate-700 
+                hover:from-slate-700 hover:via-slate-400 hover:to-slate-700 
+                active:from-slate-700 active:via-slate-800 active:to-slate-700 
+                first-of-type:rounded-l-xl last-of-type:rounded-r-xl"
             >
               <IconContext.Provider
                 value={{
