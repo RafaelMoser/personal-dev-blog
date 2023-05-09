@@ -10,7 +10,7 @@ const HomePage = () => {
   const { articles } = useLoaderData() as ArticleList;
 
   return (
-    <div className="bg-white w-full h-full">
+    <div className="w-full h-full">
       <h1 className="text-5xl font-mono font-bold text-center py-10">
         PAGE TITLE
       </h1>

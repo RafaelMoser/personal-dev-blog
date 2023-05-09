@@ -7,7 +7,7 @@ const ArticleContainer = (props: Props) => {
   const directLink =
     "http://" + window.location.hostname + "/article/" + props.article.nanoId;
   return (
-    <div className="w-1/2 h-30 rounded-md shadow-2xl bg-slate-200 flex flex-col p-4">
+    <div className="w-1/2 h-30 rounded-md shadow-2xl bg-slate-800 flex flex-col p-4">
       <h1 className="text-2xl indent-6 font-semibold">{props.article.title}</h1>
       <p className="text-xs pb-4 indent-6">
         Published{" "}
