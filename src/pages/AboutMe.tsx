@@ -31,8 +31,8 @@ const TEST_SKILLS: Skill[] = [
   },
 ];
 
-const AboutMe = () => {
+const AboutMePage = () => {
   return <SkillList skills={TEST_SKILLS} />;
 };
 
-export default AboutMe;
+export default AboutMePage;

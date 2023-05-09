@@ -1,13 +1,12 @@
-import { Await, defer, useLoaderData } from "react-router-dom";
-import axios from "axios";
+import { Await, useLoaderData } from "react-router-dom";
 import { Suspense } from "react";
-import ArticleList, { Article } from "../modules/ArticleList";
+import ArticleList, { Article } from "../modules/Article/ArticleList";
 
 type ArticleList = {
   articles: Article[];
 };
 
-const Home = () => {
+const HomePage = () => {
   const { articles } = useLoaderData() as ArticleList;
 
   return (
@@ -26,4 +25,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
