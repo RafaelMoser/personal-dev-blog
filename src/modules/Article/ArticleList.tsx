@@ -1,9 +1,10 @@
 import ArticleContainer from "./ArticleContainer";
 
 export type Article = {
-  key: string;
+  nanoId: string;
   title: string;
   publishDate: string;
+  publishTime: string;
   articleBody: string;
 };
 
@@ -13,10 +14,7 @@ const ArticleList = (props: Props) => {
   return (
     <>
       {props.articles.map((article) => (
-        <ArticleContainer
-          articleTitle={article.title}
-          articleBody={article.articleBody}
-        />
+        <ArticleContainer key={article.nanoId} article={article} />
       ))}
     </>
   );

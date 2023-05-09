@@ -15,7 +15,7 @@ export const LinkButtons = (props: Props) => {
   return (
     <div className="h-8 flex flex-row justify-stretch rounded-xl shadow-md divide-x divide-slate-800">
       {buttons.map(
-        (button, index) =>
+        (button) =>
           button.link && (
             <a
               key={button.link}
