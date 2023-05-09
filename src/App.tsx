@@ -1,21 +1,20 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/Root";
-import Home from "./pages/Home";
-import AboutMe from "./pages/AboutMe";
-import {
-  articlePageLoader,
-  infoBarLoader,
-} from "./modules/loaders/ArticleLoader";
+import HomePage from "./pages/Home";
+import AboutMePage from "./pages/AboutMe";
+import { articlePageLoader, infoBarLoader } from "./loaders/MainPageLoaders";
+import ErrorPage from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     loader: infoBarLoader,
+    errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home />, loader: articlePageLoader },
-      { path: "/page/:page", element: <Home />, loader: articlePageLoader },
-      { path: "/aboutme", element: <AboutMe /> },
+      { index: true, element: <HomePage />, loader: articlePageLoader },
+      { path: "/page/:page", element: <HomePage />, loader: articlePageLoader },
+      { path: "/aboutme", element: <AboutMePage /> },
     ],
   },
 ]);
