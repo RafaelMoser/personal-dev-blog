@@ -6,13 +6,17 @@ type ArticleList = {
   articles: Article[];
 };
 
-const HomePage = () => {
+type Props = {
+  pageTitle: string;
+};
+
+const HomePage = (props: Props) => {
   const { articles } = useLoaderData() as ArticleList;
 
   return (
     <div className="w-full h-full">
       <h1 className="text-5xl font-mono font-bold text-center py-10">
-        PAGE TITLE
+        {props.pageTitle}
       </h1>
       <div className="flex flex-col space-y-8 items-center">
         <Suspense fallback={<p className="text-5xl">loading</p>}>

@@ -5,6 +5,8 @@ import AboutMePage from "./pages/AboutMe";
 import { articlePageLoader, infoBarLoader } from "./loaders/MainPageLoaders";
 import ErrorPage from "./pages/Error";
 
+const BLOG_NAME = "Rafael Moser's dev blog";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -12,8 +14,16 @@ const router = createBrowserRouter([
     loader: infoBarLoader,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <HomePage />, loader: articlePageLoader },
-      { path: "/page/:page", element: <HomePage />, loader: articlePageLoader },
+      {
+        index: true,
+        element: <HomePage pageTitle={BLOG_NAME} />,
+        loader: articlePageLoader,
+      },
+      {
+        path: "/page/:page",
+        element: <HomePage pageTitle={BLOG_NAME} />,
+        loader: articlePageLoader,
+      },
       { path: "/article/:id" },
       { path: "/aboutme", element: <AboutMePage /> },
     ],
