@@ -1,12 +1,4 @@
-import ArticleContainer from "./ArticleContainer";
-
-export type Article = {
-  nanoId: string;
-  title: string;
-  publishDate: string;
-  publishTime: string;
-  articleBody: string;
-};
+import ArticleContainer, { Article } from "./ArticleContainer";
 
 type Props = { articles: Article[] };
 

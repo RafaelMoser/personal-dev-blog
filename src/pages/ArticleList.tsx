@@ -1,6 +1,7 @@
 import { Await, useRouteLoaderData } from "react-router-dom";
 import { Suspense } from "react";
-import ArticleList, { Article } from "../modules/Article/ArticleList";
+import ArticleList from "../modules/Article/ArticleList";
+import { Article } from "../modules/Article/ArticleContainer";
 
 type ArticleList = {
   articles: Article[];

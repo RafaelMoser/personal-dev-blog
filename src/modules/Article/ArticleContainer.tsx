@@ -1,4 +1,10 @@
-import { Article } from "./ArticleList";
+export type Article = {
+  nanoId: string;
+  title: string;
+  publishDate: string;
+  publishTime: string;
+  articleBody: string;
+};
 
 type Props = { article: Article };
 
