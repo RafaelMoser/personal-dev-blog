@@ -21,9 +21,9 @@ const ArticlePageFooter = (props: Props) => {
       setLeftInput("...");
     } else if (isNaN(value) || +value < 1 || +value > props.pageCount) {
       setLeftError(true);
+      setLeftInput("...");
       setTimeout(() => {
         setLeftError(false);
-        setLeftInput("...");
       }, 1500);
     } else {
       navigate(`/page/${+value}`);
@@ -36,9 +36,9 @@ const ArticlePageFooter = (props: Props) => {
       setRightInput("...");
     } else if (isNaN(value) || +value < 1 || +value > props.pageCount) {
       setRightError(true);
+      setRightInput("...");
       setTimeout(() => {
         setRightError(false);
-        setRightInput("...");
       }, 1500);
     } else {
       navigate(`/page/${+value}`);
