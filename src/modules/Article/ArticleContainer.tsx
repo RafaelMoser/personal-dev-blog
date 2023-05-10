@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export type Article = {
   nanoId: string;
   title: string;
@@ -10,7 +12,6 @@ type Props = { article: Article };
 
 const ArticleContainer = (props: Props) => {
   let numKey = 0;
-  const directLink = `http://${window.location.hostname}/article/${props.article.nanoId}`;
   return (
     <div className="w-1/2 h-30 rounded-md shadow-2xl bg-slate-800 flex flex-col p-4">
       <h1 className="text-2xl indent-6 font-semibold">{props.article.title}</h1>
@@ -30,13 +31,12 @@ const ArticleContainer = (props: Props) => {
         })}
       </article>
       <div>
-        <a
-          href={directLink}
-          title={directLink}
+        <NavLink
+          to={`/article/${props.article.nanoId}`}
           className="text-xs underline text-blue-600 hover:text-cyan-600 "
         >
           Direct link to this article
-        </a>
+        </NavLink>
       </div>
     </div>
   );

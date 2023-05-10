@@ -1,6 +1,6 @@
 import ArticleContainer, { Article } from "./ArticleContainer";
 
-type Props = { articles: Article[] };
+type Props = { articles: Article[]; pageCount: number };
 
 const ArticleList = (props: Props) => {
   return (

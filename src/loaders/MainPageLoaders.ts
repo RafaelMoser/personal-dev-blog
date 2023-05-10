@@ -9,11 +9,18 @@ export const loadArticles = async (page = 1) => {
     .then((res) => res.data);
 };
 
+const loadPageCount = async () => {
+  return await axios
+    .get(SERVER_URL + "article/pageCount")
+    .then((res) => res.data);
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const articlePageLoader = ({ params }: { params: any }) => {
   const page = parseInt(params.page) || 1;
   return defer({
     articles: loadArticles(page),
+    pageCount: loadPageCount(),
   });
 };
 
