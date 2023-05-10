@@ -1,5 +1,5 @@
 import ArticleContainer from "./ArticleContainer";
-import PagePicker from "./PagePicker";
+import ArticlePageFooter from "./ArticlePageFooter";
 
 export type Article = {
   nanoId: string;

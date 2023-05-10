@@ -1,7 +1,7 @@
 import { Await, useParams, useRouteLoaderData } from "react-router-dom";
 import { Suspense, useEffect, useState } from "react";
 import ArticleList, { Article } from "../modules/Article/ArticleList";
-import PagePicker from "../modules/Article/PagePicker";
+import ArticlePageFooter from "../modules/Article/ArticlePageFooter";
 import { loadArticles } from "../loaders/MainPageLoaders";
 
 type ArticleListData = {
@@ -42,7 +42,7 @@ const ArticleListPage = () => {
       <Suspense fallback={<p className="text-5xl">loading</p>}>
         <Await resolve={pageCount}>
           {(loadedPageCount) => (
-            <PagePicker
+            <ArticlePageFooter
               pageCount={loadedPageCount.pageCount}
               currentPage={currentPage}
             />
