@@ -1,7 +1,8 @@
 import { Await, useParams, useRouteLoaderData } from "react-router-dom";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import ArticleList, { Article } from "../modules/Article/ArticleList";
 import PagePicker from "../modules/Article/PagePicker";
+import { loadArticles } from "../loaders/MainPageLoaders";
 
 type ArticleListData = {
   articles: Article[];
@@ -13,9 +14,21 @@ type Params = {
 };
 
 const ArticleListPage = () => {
-  const { articles, pageCount } = useRouteLoaderData("home") as ArticleListData;
+  const data = useRouteLoaderData("home") as ArticleListData;
   const { page } = useParams() as Params;
-  const currentPage = +page || 1;
+  const [articles, setArticles] = useState(data.articles);
+  const [pageCount] = useState(data.pageCount);
+  const [currentPage, setCurrentPage] = useState(+page || 1);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setArticles(await loadArticles(+page || 1));
+    };
+
+    setCurrentPage(+page || 1);
+    fetchData();
+    window.scroll({ top: 0, left: 0, behavior: "smooth" });
+  }, [page]);
 
   return (
     <div className="flex flex-col space-y-8 items-center">

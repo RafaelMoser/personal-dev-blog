@@ -3,7 +3,7 @@ import { defer } from "react-router-dom";
 
 const SERVER_URL = "http://localhost:5000/";
 
-const loadArticles = async (page = 1) => {
+export const loadArticles = async (page = 1) => {
   return await axios
     .get(SERVER_URL + "article/list/" + page)
     .then((res) => res.data);

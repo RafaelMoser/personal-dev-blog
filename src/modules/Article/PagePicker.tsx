@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 type Props = {
   pageCount: number;
@@ -8,7 +8,7 @@ type Props = {
 const PagePicker = (props: Props) => {
   let leftPagePicker = false;
   let rightPagePicker = false;
-  const baseLink = `http://${window.location.hostname}/page/`;
+
   const shouldRender = (page: number) => {
     return (
       page === 1 ||
@@ -16,17 +16,16 @@ const PagePicker = (props: Props) => {
       Math.abs(props.currentPage - page) <= 2
     );
   };
-
   const pageFooter: JSX.Element[] = [];
 
   if (props.currentPage !== 1) {
     pageFooter.push(
       <div
         key="prev"
-        className="w-10 h-10 flex justify-center items-center 
+        className="w-14 h-10 flex justify-center items-center 
     rounded-2xl bg-slate-700 shadow-inner shadow-slate-800"
       >
-        <Link to={`${baseLink}${props.currentPage - 1}`}>prev</Link>
+        <NavLink to={`/page/${props.currentPage - 1}`}>prev</NavLink>
       </div>
     );
   }
@@ -48,7 +47,7 @@ const PagePicker = (props: Props) => {
           className="w-10 h-10 flex justify-center items-center 
     rounded-xl bg-slate-700 shadow-inner shadow-slate-800"
         >
-          <Link to={`${baseLink}${index}`}>{index}</Link>
+          <NavLink to={`/page/${index}`}>{index}</NavLink>
         </div>
       );
     } else if (index < props.currentPage && leftPagePicker) {
@@ -63,16 +62,16 @@ const PagePicker = (props: Props) => {
     pageFooter.push(
       <div
         key="next"
-        className="w-10 h-10 flex justify-center items-center p-2
+        className="w-14 h-10 flex justify-center items-center p-2
           rounded-xl bg-slate-700 shadow-inner shadow-slate-800"
       >
-        <Link to={`${baseLink}${props.currentPage + 1}`}>next</Link>
+        <NavLink to={`/page/${props.currentPage + 1}`}>next</NavLink>
       </div>
     );
   }
 
   return (
-    <div className="w-full flex flex-row justify-center align-middle pb-8 space-x-4">
+    <div className="w-full h-14 flex flex-row justify-center items-center pb-8 space-x-4">
       {pageFooter}
     </div>
   );
