@@ -5,9 +5,6 @@ type Props = {
   currentPage: number;
 };
 
-//
-//[<][1][...][4][5](6)[7][8][...][12][>]
-
 const PagePicker = (props: Props) => {
   let leftPagePicker = false;
   let rightPagePicker = false;
@@ -16,7 +13,7 @@ const PagePicker = (props: Props) => {
     return (
       page === 1 ||
       page === props.pageCount ||
-      Math.abs(props.currentPage - page) < 2
+      Math.abs(props.currentPage - page) <= 2
     );
   };
 
@@ -25,18 +22,20 @@ const PagePicker = (props: Props) => {
   if (props.currentPage !== 1) {
     pageFooter.push(
       <div
-        className="w-6 h-6 flex justify-center items-center 
+        key="prev"
+        className="w-10 h-10 flex justify-center items-center 
     rounded-2xl bg-slate-700 shadow-inner shadow-slate-800"
       >
         <Link to={`${baseLink}${props.currentPage - 1}`}>prev</Link>
       </div>
     );
   }
+
   for (let index = 1; index <= props.pageCount; index++) {
     if (index === props.currentPage) {
       pageFooter.push(
         <div
-          className="w-8 h-8 flex justify-center items-center 
+          className="w-12 h-12 flex justify-center items-center 
     rounded-full bg-slate-700 shadow-inner shadow-slate-800"
         >
           {index}
@@ -45,8 +44,9 @@ const PagePicker = (props: Props) => {
     } else if (shouldRender(index)) {
       pageFooter.push(
         <div
-          className="w-6 h-6 flex justify-center items-center 
-    rounded-2xl bg-slate-700 shadow-inner shadow-slate-800"
+          key={index}
+          className="w-10 h-10 flex justify-center items-center 
+    rounded-xl bg-slate-700 shadow-inner shadow-slate-800"
         >
           <Link to={`${baseLink}${index}`}>{index}</Link>
         </div>
@@ -62,15 +62,20 @@ const PagePicker = (props: Props) => {
   if (props.currentPage !== props.pageCount) {
     pageFooter.push(
       <div
-        className="w-6 h-6 flex justify-center items-center 
-    rounded-2xl bg-slate-700 shadow-inner shadow-slate-800"
+        key="next"
+        className="w-10 h-10 flex justify-center items-center p-2
+          rounded-xl bg-slate-700 shadow-inner shadow-slate-800"
       >
         <Link to={`${baseLink}${props.currentPage + 1}`}>next</Link>
       </div>
     );
   }
 
-  return <div>{pageFooter}</div>;
+  return (
+    <div className="w-full flex flex-row justify-center align-middle pb-8 space-x-4">
+      {pageFooter}
+    </div>
+  );
 };
 
 export default PagePicker;

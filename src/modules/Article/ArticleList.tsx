@@ -1,4 +1,5 @@
 import ArticleContainer from "./ArticleContainer";
+import PagePicker from "./PagePicker";
 
 export type Article = {
   nanoId: string;
@@ -8,7 +9,7 @@ export type Article = {
   articleBody: string;
 };
 
-type Props = { articles: Article[] };
+type Props = { articles: Article[]; pageCount: number };
 
 const ArticleList = (props: Props) => {
   return (

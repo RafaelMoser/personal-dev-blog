@@ -3,9 +3,15 @@ import { defer } from "react-router-dom";
 
 const SERVER_URL = "http://localhost:5000/";
 
-export const loadArticles = async (page = 1) => {
+const loadArticles = async (page = 1) => {
   return await axios
     .get(SERVER_URL + "article/list/" + page)
+    .then((res) => res.data);
+};
+
+const loadPageCount = async () => {
+  return await axios
+    .get(SERVER_URL + "article/pageCount")
     .then((res) => res.data);
 };
 
@@ -14,6 +20,7 @@ const articlePageLoader = ({ params }: { params: any }) => {
   const page = parseInt(params.page) || 1;
   return defer({
     articles: loadArticles(page),
+    pageCount: loadPageCount(),
   });
 };
 
