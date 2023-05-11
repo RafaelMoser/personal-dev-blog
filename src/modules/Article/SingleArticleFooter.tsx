@@ -9,7 +9,7 @@ type Props = {
 
 const SingleArticleFooter = (props: Props) => {
   return (
-    <div className="grid grid-cols-3 space-x-10">
+    <div className="grid grid-cols-5">
       {props.nextNanoId && (
         <NavLink
           to={`/article/${props.nextNanoId}`}
@@ -24,7 +24,7 @@ const SingleArticleFooter = (props: Props) => {
       )}
       <NavLink
         to="/"
-        className="col-start-2 bg-slate-600 rounded-full flex flex-row text-white justify-center items-center h-10"
+        className="col-start-3 bg-slate-600 rounded-full flex flex-row text-white justify-center items-center h-10"
       >
         return to home
       </NavLink>
@@ -32,7 +32,7 @@ const SingleArticleFooter = (props: Props) => {
       {props.prevNanoId && (
         <NavLink
           to={`/article/${props.prevNanoId}`}
-          className="col-start-3 bg-slate-600 rounded-full flex flex-row text-white justify-center items-center h-10"
+          className="col-start-5 bg-slate-600 rounded-full flex flex-row text-white justify-center items-center h-10"
         >
           <div>
             <div>Previous article</div>
