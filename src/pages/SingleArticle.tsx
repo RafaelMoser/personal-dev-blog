@@ -5,8 +5,10 @@ import SingleArticleFooter from "../modules/Article/SingleArticleFooter";
 
 type SingleArticleData = {
   article: Article;
-  prev?: string;
-  next?: string;
+  prevNanoId?: string;
+  prevTitle?: string;
+  nextNanoId?: string;
+  nextTitle?: string;
 };
 
 const SingleArticlePage = () => {
@@ -25,8 +27,8 @@ const SingleArticlePage = () => {
           <Await resolve={articleData}>
             {(loadedData) => (
               <SingleArticleFooter
-                prev={loadedData.data.prev}
-                next={loadedData.data.next}
+                prevNanoId={loadedData.data.prevNanoId}
+                nextNanoId={loadedData.data.nextNanoId}
               />
             )}
           </Await>

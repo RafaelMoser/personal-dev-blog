@@ -1,12 +1,12 @@
 type Props = {
-  prev?: string;
-  next?: string;
+  prevNanoId?: string;
+  nextNanoId?: string;
 };
 
 const SingleArticleFooter = (props: Props) => {
   return (
     <div>
-      {props.prev} SingleArticleFooter {props.next}
+      {props.prevNanoId} SingleArticleFooter {props.nextNanoId}
     </div>
   );
 };
