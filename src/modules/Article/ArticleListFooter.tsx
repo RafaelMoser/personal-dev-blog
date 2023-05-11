@@ -6,7 +6,7 @@ type Props = {
   currentPage: number;
 };
 
-const ArticlePageFooter = (props: Props) => {
+const ArticleListFooter = (props: Props) => {
   const navigate = useNavigate();
   let leftPagePicker = false;
   let rightPagePicker = false;
@@ -152,4 +152,4 @@ const ArticlePageFooter = (props: Props) => {
   );
 };
 
-export default ArticlePageFooter;
+export default ArticleListFooter;

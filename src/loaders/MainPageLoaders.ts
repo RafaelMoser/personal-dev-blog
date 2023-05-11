@@ -1,17 +1,17 @@
 import axios from "axios";
 import { defer } from "react-router-dom";
 
-const SERVER_URL = "http://localhost:5000/";
+const SERVER_URL = "http://localhost:5000";
 
-export const loadArticles = async (page = 1) => {
+const loadArticles = async (page = 1) => {
   return await axios
-    .get(SERVER_URL + "article/list/" + page)
+    .get(`${SERVER_URL}/article/list/${page}`)
     .then((res) => res.data);
 };
 
 const loadPageCount = async () => {
   return await axios
-    .get(SERVER_URL + "article/pageCount")
+    .get(`${SERVER_URL}/article/pageCount`)
     .then((res) => res.data);
 };
 
@@ -24,8 +24,12 @@ const articlePageLoader = ({ params }: { params: any }) => {
   });
 };
 
-const infoBarLoader = async () => {
-  return await axios.get(SERVER_URL + "aboutme/").then((res) => res.data);
+const singleArticleLoader = async ({ params: { nanoId } }: any) => {
+  return await axios.get(`${SERVER_URL}/article/single/${nanoId}`);
 };
 
-export { articlePageLoader, infoBarLoader };
+const infoBarLoader = async () => {
+  return await axios.get(SERVER_URL + "/aboutme/").then((res) => res.data);
+};
+
+export { loadArticles, articlePageLoader, infoBarLoader, singleArticleLoader };
