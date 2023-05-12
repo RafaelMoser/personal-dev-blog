@@ -22,18 +22,18 @@ const SingleArticlePage = () => {
           )}
         </Await>
       </Suspense>
-      <div>
-        <Suspense>
-          <Await resolve={articleData}>
-            {(loadedData) => (
-              <SingleArticleFooter
-                prevNanoId={loadedData.data.prevNanoId}
-                nextNanoId={loadedData.data.nextNanoId}
-              />
-            )}
-          </Await>
-        </Suspense>
-      </div>
+      <Suspense>
+        <Await resolve={articleData}>
+          {(loadedData) => (
+            <SingleArticleFooter
+              prevNanoId={loadedData.data.prevNanoId}
+              prevTitle={loadedData.data.prevTitle}
+              nextNanoId={loadedData.data.nextNanoId}
+              nextTitle={loadedData.data.nextTitle}
+            />
+          )}
+        </Await>
+      </Suspense>
     </div>
   );
 };
