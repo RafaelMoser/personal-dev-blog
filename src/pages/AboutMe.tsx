@@ -1,4 +1,5 @@
-import SkillList, { Skill } from "../modules/SkillList/SkillList";
+import AboutMeContainer from "../modules/AboutMe/AboutMeContainer";
+import SkillList, { Skill } from "../modules/AboutMe/SkillList/SkillList";
 const TEST_SKILLS: Skill[] = [
   {
     id: "1",
@@ -32,7 +33,7 @@ const TEST_SKILLS: Skill[] = [
 ];
 
 const AboutMePage = () => {
-  return <SkillList skills={TEST_SKILLS} />;
+  return <AboutMeContainer aboutMeBody="test" skills={TEST_SKILLS} />;
 };
 
 export default AboutMePage;
