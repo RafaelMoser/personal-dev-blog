@@ -53,6 +53,10 @@ const InformationBar = () => {
       <LinkButtons github={github} linkedin={linkedIn} />
       <span className="h-0.5 w-full bg-slate-600" />
       <div className="text-center text-sm font-mono">{infoBlurb}</div>
+      <div
+        className="h-10 w-10 border-slate-600 border-8 rounded-full 
+       hover:w-44 transition-all ease-out duration-200 justify-self-end"
+      ></div>
     </div>
   );
 };
