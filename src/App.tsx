@@ -6,10 +6,11 @@ import {
   articlePageLoader,
   infoBarLoader,
   singleArticleLoader,
-} from "./loaders/MainPageLoaders";
+} from "./loaders/HttpRequests";
 import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
 import SingleArticlePage from "./pages/SingleArticle";
+import AuthContext from "./store/auth-context";
 
 const BLOG_NAME = "Rafael Moser's dev blog";
 
@@ -42,7 +43,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthContext.Provider value={{ accessToken: "" }}>
+      <RouterProvider router={router} />
+    </AuthContext.Provider>
+  );
 }
 
 export default App;

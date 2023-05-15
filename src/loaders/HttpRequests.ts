@@ -32,4 +32,11 @@ const infoBarLoader = async () => {
   return await axios.get(SERVER_URL + "/aboutme/").then((res) => res.data);
 };
 
+const loginRequest = async (username: string, password: string) => {
+  return await axios
+    .post(SERVER_URL + "/login/", { username, password })
+    .then((res) => res.data)
+    .catch();
+};
+
 export { loadArticles, articlePageLoader, infoBarLoader, singleArticleLoader };
