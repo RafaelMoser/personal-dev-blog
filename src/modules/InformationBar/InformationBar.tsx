@@ -10,14 +10,14 @@ type ProfileData = {
   profileImageUrl: string;
   infoBlurb: string;
   github?: string;
-  linkedIn?: string;
+  linkedin?: string;
 };
 
 const InformationBar = () => {
   const [showInfoBar, setShowInfoBar] = useState(true);
   const [loginModal, setLoginModal] = useState(false);
 
-  const { profileImageUrl, infoBlurb, github, linkedIn } =
+  const { profileImageUrl, infoBlurb, github, linkedin } =
     useLoaderData() as ProfileData;
 
   const showInfoBarHandler = () => {
@@ -61,7 +61,7 @@ const InformationBar = () => {
             src={profileImageUrl}
           />
         </div>
-        <LinkButtons github={github} linkedin={linkedIn} />
+        <LinkButtons github={github} linkedin={linkedin} />
         <span className="h-0.5 w-full bg-slate-600" />
         <div className="text-center text-sm font-mono">{infoBlurb}</div>
         <div className="grow" />

@@ -11,6 +11,7 @@ import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
 import SingleArticlePage from "./pages/SingleArticle";
 import AuthContext from "./store/auth-context";
+import AdminPage from "./pages/Admin";
 
 const BLOG_NAME = "Rafael Moser's dev blog";
 
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
         loader: singleArticleLoader,
       },
       { path: "/aboutme", element: <AboutMePage /> },
+      { path: "/admin", element: <AdminPage /> },
     ],
   },
 ]);
