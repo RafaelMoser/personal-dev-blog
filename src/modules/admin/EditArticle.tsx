@@ -1,18 +1,19 @@
 type Props = {
+  updateMode: boolean;
   title?: string;
   articleBody?: string;
 };
 
 const EditArticle = (props: Props) => {
   return (
-    <div>
-      <div>
+    <div className="flex flex-col">
+      <div className="flex flex-col">
         <label>Title</label>
         <input value={props.title} />
       </div>
-      <div>
+      <div className="flex flex-col">
         <label>Article Body</label>
-        <input value={props.articleBody} />
+        <textarea className="h-96" value={props.articleBody} />
       </div>
     </div>
   );

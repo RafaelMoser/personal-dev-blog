@@ -1,4 +1,6 @@
 import { useState } from "react";
+import EditArticle from "./EditArticle";
+import EditBlogInfo from "./EditBlogInfo";
 const ModuleSelector = () => {
   //modes
   //0:off, 1:new article, 2:update article, 3:update personal info
@@ -32,9 +34,9 @@ const ModuleSelector = () => {
           Update Personal Information
         </button>
       </div>
-      {selectedModule === 1 && "New Article!"}
-      {selectedModule === 2 && "Upd Article!"}
-      {selectedModule === 3 && "Upd PersInf!"}
+      {selectedModule === 1 && <EditArticle updateMode={false} />}
+      {selectedModule === 2 && <EditArticle updateMode={true} />}
+      {selectedModule === 3 && <EditBlogInfo />}
     </div>
   );
 };
