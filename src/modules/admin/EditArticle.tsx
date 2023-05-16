@@ -8,12 +8,15 @@ const EditArticle = (props: Props) => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col">
-        <label>Title</label>
-        <input value={props.title} />
+        <label className="font-bold text-slate-300">Title</label>
+        <input className="rounded-md bg-slate-800" value={props.title} />
       </div>
       <div className="flex flex-col">
-        <label>Article Body</label>
-        <textarea className="h-96" value={props.articleBody} />
+        <label className="font-bold text-slate-300">Article Body</label>
+        <textarea
+          className="h-96 rounded-md bg-slate-800"
+          value={props.articleBody}
+        />
       </div>
     </div>
   );
