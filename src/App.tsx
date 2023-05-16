@@ -4,6 +4,7 @@ import ArticleListPage from "./pages/ArticleList";
 import AboutMePage from "./pages/AboutMe";
 import {
   articlePageLoader,
+  blogUpdateDataLoader,
   infoBarLoader,
   singleArticleLoader,
 } from "./loaders/HttpRequests";
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
           {
             path: "/admin/updateProfile",
             element: <UpdateProfilePage />,
+            loader: blogUpdateDataLoader,
           },
         ],
       },

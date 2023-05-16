@@ -25,18 +25,31 @@ const articlePageLoader = ({ params }: { params: any }) => {
 };
 
 const singleArticleLoader = async ({ params: { nanoId } }: any) => {
-  return await axios.get(`${SERVER_URL}/article/single/${nanoId}`);
+  return await axios
+    .get(`${SERVER_URL}/article/single/${nanoId}`)
+    .then((res) => res.data);
 };
 
 const infoBarLoader = async () => {
-  return await axios.get(SERVER_URL + "/aboutme/").then((res) => res.data);
+  return await axios.get(`${SERVER_URL}/aboutme/`).then((res) => res.data);
 };
 
 const loginRequest = async (username: string, password: string) => {
   return await axios
-    .post(SERVER_URL + "/login/", { username, password })
+    .post(`${SERVER_URL}/login/`, { username, password })
     .then((res) => res.data)
     .catch();
 };
 
-export { loadArticles, articlePageLoader, infoBarLoader, singleArticleLoader };
+const blogUpdateDataLoader = async () => {
+  axios.get(`${SERVER_URL}/admin/profile`).then((res) => res.data);
+};
+
+export {
+  loadArticles,
+  articlePageLoader,
+  infoBarLoader,
+  singleArticleLoader,
+  loginRequest,
+  blogUpdateDataLoader,
+};
