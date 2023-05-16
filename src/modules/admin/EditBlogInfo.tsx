@@ -1,4 +1,6 @@
-type Props = {
+import { useLoaderData } from "react-router-dom";
+
+type BlogInfo = {
   profileImageUrl: string;
   infoBlurb: string;
   github?: string;
@@ -7,34 +9,37 @@ type Props = {
   aboutMe: string;
 };
 
-const EditBlogInfo = (props: Props) => {
+const EditBlogInfo = () => {
+  const { profileImageUrl, infoBlurb, email, github, linkedin, aboutMe } =
+    useLoaderData() as BlogInfo;
+
   return (
     <div>
       <div>
         <label>Profile Image</label>
-        <input value={props.profileImageUrl} />
+        <input value={profileImageUrl} />
       </div>
       <div>
         <label>Blog information blurb</label>
-        <input value={props.infoBlurb} />
+        <input value={infoBlurb} />
       </div>
       <div>
         <div>
           <label>E-Mail</label>
-          <input value={props.email} />
+          <input value={email} />
         </div>
         <div>
           <label>GitHub Link</label>
-          <input value={props.github} />
+          <input value={github} />
         </div>
         <div>
           <label>LinkedIn Link</label>
-          <input value={props.linkedin} />
+          <input value={linkedin} />
         </div>
       </div>
       <div>
         <label>About me page body</label>
-        <input value={props.aboutMe} />
+        <input value={aboutMe} />
       </div>
     </div>
   );

@@ -1,42 +1,40 @@
-import { useState } from "react";
-import EditArticle from "./EditArticle";
-import EditBlogInfo from "./EditBlogInfo";
+import { NavLink, Outlet } from "react-router-dom";
 const ModuleSelector = () => {
-  //modes
-  //0:off, 1:new article, 2:update article, 3:update personal info
-  const [selectedModule, setSelectedModule] = useState(0);
-
   return (
     <div>
       <div className="flex flex-row space-x-4">
-        <button
-          className={`w-48 p-2 text-center bg-slate-700 rounded-xl ${
-            selectedModule === 1 ? "outline outline-4 outline-cyan-800" : ""
-          }`}
-          onClick={() => setSelectedModule(1)}
+        <NavLink
+          to="newArticle"
+          className={({ isActive }) =>
+            `w-48 p-2 text-center bg-slate-700 rounded-xl ${
+              isActive ? "outline outline-4 outline-cyan-800" : ""
+            }`
+          }
         >
           New Article
-        </button>
-        <button
-          className={`w-48 p-2 text-center bg-slate-700 rounded-xl ${
-            selectedModule === 2 ? "outline outline-4 outline-cyan-800" : ""
-          }`}
-          onClick={() => setSelectedModule(2)}
+        </NavLink>
+        <NavLink
+          to="updateArticle"
+          className={({ isActive }) =>
+            `w-48 p-2 text-center bg-slate-700 rounded-xl ${
+              isActive ? "outline outline-4 outline-cyan-800" : ""
+            }`
+          }
         >
           Update Article
-        </button>
-        <button
-          className={`"w-48 p-2 text-center bg-slate-700 rounded-xl ${
-            selectedModule === 3 ? "outline outline-4 outline-cyan-800" : ""
-          }`}
-          onClick={() => setSelectedModule(3)}
+        </NavLink>
+        <NavLink
+          to="updateProfile"
+          className={({ isActive }) =>
+            `w-48 p-2 text-center bg-slate-700 rounded-xl ${
+              isActive ? "outline outline-4 outline-cyan-800" : ""
+            }`
+          }
         >
           Update Personal Information
-        </button>
+        </NavLink>
       </div>
-      {selectedModule === 1 && <EditArticle updateMode={false} />}
-      {selectedModule === 2 && <EditArticle updateMode={true} />}
-      {selectedModule === 3 && <EditBlogInfo />}
+      <Outlet />
     </div>
   );
 };

@@ -12,6 +12,9 @@ import HomePage from "./pages/Home";
 import SingleArticlePage from "./pages/SingleArticle";
 import AuthContext from "./store/auth-context";
 import AdminPage from "./pages/Admin";
+import NewArticlePage from "./pages/NewArticle";
+import UpdateArticlePage from "./pages/UpdateArticle";
+import UpdateProfilePage from "./pages/UpdateProfile";
 
 const BLOG_NAME = "Rafael Moser's dev blog";
 
@@ -39,7 +42,24 @@ const router = createBrowserRouter([
         loader: singleArticleLoader,
       },
       { path: "/aboutme", element: <AboutMePage /> },
-      { path: "/admin", element: <AdminPage /> },
+      {
+        path: "/admin",
+        element: <AdminPage />,
+        children: [
+          {
+            path: "/admin/newArticle",
+            element: <NewArticlePage />,
+          },
+          {
+            path: "/admin/updateArticle",
+            element: <UpdateArticlePage />,
+          },
+          {
+            path: "/admin/updateProfile",
+            element: <UpdateProfilePage />,
+          },
+        ],
+      },
     ],
   },
 ]);
