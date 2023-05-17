@@ -42,7 +42,7 @@ const loginRequest = async (username: string, password: string) => {
 };
 
 const blogUpdateDataLoader = async () => {
-  axios.get(`${SERVER_URL}/admin/profile`).then((res) => res.data);
+  return axios.get(`${SERVER_URL}/admin/profile`).then((res) => res.data);
 };
 
 export {
