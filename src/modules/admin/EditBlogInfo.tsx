@@ -1,4 +1,5 @@
-import { useLoaderData } from "react-router-dom";
+import { Suspense } from "react";
+import { Await, useLoaderData } from "react-router-dom";
 
 type BlogInfo = {
   profileImageUrl: string;
@@ -10,37 +11,75 @@ type BlogInfo = {
 };
 
 const EditBlogInfo = () => {
-  const { profileImageUrl, infoBlurb, email, github, linkedin, aboutMe } =
-    useLoaderData() as BlogInfo;
+  const data = useLoaderData() as BlogInfo;
 
   return (
-    <div>
-      <div>
-        <label>Profile Image</label>
-        <input value={profileImageUrl} />
-      </div>
-      <div>
-        <label>Blog information blurb</label>
-        <input value={infoBlurb} />
-      </div>
-      <div>
-        <div>
-          <label>E-Mail</label>
-          <input value={email} />
-        </div>
-        <div>
-          <label>GitHub Link</label>
-          <input value={github} />
-        </div>
-        <div>
-          <label>LinkedIn Link</label>
-          <input value={linkedin} />
-        </div>
-      </div>
-      <div>
-        <label>About me page body</label>
-        <input value={aboutMe} />
-      </div>
+    <div className="flex flex-col element-bg rounded-xl p-4 space-y-2">
+      <Suspense>
+        <Await resolve={data}>
+          {(loadedData) => (
+            <>
+              <div className="flex flex-col">
+                <label className="font-bold text-slate-300">
+                  Profile Image
+                </label>
+                <input
+                  className="textinput-bg rounded-md p-2"
+                  value={loadedData.profileImageUrl}
+                />
+              </div>
+              <div className="flex flex-col">
+                <label className="font-bold text-slate-300">
+                  Blog information blurb
+                </label>
+                <input
+                  className="textinput-bg rounded-md p-2"
+                  value={loadedData.infoBlurb}
+                />
+              </div>
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-col">
+                  <label className="font-bold text-slate-300">E-Mail</label>
+                  <input
+                    className="textinput-bg rounded-md p-2 w-44"
+                    value={loadedData.email}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="font-bold text-slate-300">
+                    GitHub Link
+                  </label>
+                  <input
+                    className="textinput-bg rounded-md p-2 w-44"
+                    value={loadedData.github}
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <label className="font-bold text-slate-300">
+                    LinkedIn Link
+                  </label>
+                  <input
+                    className="textinput-bg rounded-md p-2 w-44"
+                    value={loadedData.linkedin}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <label className="font-bold text-slate-300">
+                  About me page body
+                </label>
+                <textarea
+                  className="textinput-bg rounded-md p-2 resize-none h-80"
+                  value={loadedData.aboutMe}
+                />
+              </div>
+              <button className="clickable-bg p-2 self-end rounded-md">
+                Submit
+              </button>
+            </>
+          )}
+        </Await>
+      </Suspense>
     </div>
   );
 };

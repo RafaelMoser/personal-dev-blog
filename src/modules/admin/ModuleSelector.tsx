@@ -2,11 +2,11 @@ import { NavLink, Outlet } from "react-router-dom";
 const ModuleSelector = () => {
   return (
     <div>
-      <div className="flex flex-row space-x-4">
+      <div className="flex flex-row space-x-4 py-4">
         <NavLink
           to="newArticle"
           className={({ isActive }) =>
-            `w-48 p-2 text-center bg-slate-700 rounded-xl ${
+            `flex items-center justify-center text-center w-48 p-2 clickable-bg rounded-xl font-bold ${
               isActive ? "outline outline-4 outline-cyan-800" : ""
             }`
           }
@@ -16,7 +16,7 @@ const ModuleSelector = () => {
         <NavLink
           to="updateArticle"
           className={({ isActive }) =>
-            `w-48 p-2 text-center bg-slate-700 rounded-xl ${
+            `flex items-center justify-center text-center  w-48 p-2 clickable-bg rounded-xl font-bold ${
               isActive ? "outline outline-4 outline-cyan-800" : ""
             }`
           }
@@ -26,7 +26,7 @@ const ModuleSelector = () => {
         <NavLink
           to="updateProfile"
           className={({ isActive }) =>
-            `w-48 p-2 text-center bg-slate-700 rounded-xl ${
+            `flex items-center justify-center text-center w-48 p-2 clickable-bg rounded-xl font-bold ${
               isActive ? "outline outline-4 outline-cyan-800" : ""
             }`
           }
