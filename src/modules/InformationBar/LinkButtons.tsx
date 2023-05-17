@@ -22,16 +22,13 @@ export const LinkButtons = (props: Props) => {
               href={button.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="h-8 w-40 flex flex-auto justify-center content-center
-                bg-gradient-to-b from-slate-700 via-slate-500 to-slate-700 
-                hover:from-slate-700 hover:via-slate-400 hover:to-slate-700 
-                active:from-slate-700 active:via-slate-800 active:to-slate-700 
+              className="clickable-bg h-8 w-40 flex flex-auto justify-center content-center
                 first-of-type:rounded-l-3xl last-of-type:rounded-r-3xl"
               title={button.link}
             >
               <IconContext.Provider
                 value={{
-                  color: "black",
+                  color: "white",
                   size: "32px",
                 }}
               >

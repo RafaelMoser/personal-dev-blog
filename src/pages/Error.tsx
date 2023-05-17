@@ -25,14 +25,14 @@ const ErrorPage = () => {
   }
 
   return (
-    <div className="text-center h-screen bg-slate-600 flex justify-center items-center">
-      <div className="flex flex-col justify-center items-center w-96 h-80 rounded-3xl bg-slate-400 p-10 shadow-md gap-y-4">
+    <div className="base-bg text-center h-screen flex justify-center items-center">
+      <div className="element-bg flex flex-col justify-center items-center w-96 h-80 rounded-3xl p-10 shadow-md gap-y-4">
         {errorStatus && <h1 className="text-bold text-9xl">{errorStatus}</h1>}
-        <p className="">{errorMessage}</p>
+        <p>{errorMessage}</p>
         <div className="flex flex-row justify-stretch rounded-xl shadow-md divide-x divide-slate-800 w-80">
           <a
             onClick={() => navigate(-1)}
-            className={`text-white font-bold px-4 grow w-40 h-8
+            className={`font-bold px-4 grow w-40 h-8
           bg-gradient-to-b from-slate-700 via-slate-500 to-slate-700 
           hover:from-slate-700 hover:via-slate-400 hover:to-slate-700 
           active:from-slate-700 active:via-slate-800 active:to-slate-700 
@@ -42,7 +42,7 @@ const ErrorPage = () => {
           </a>
           <Link
             to={"/"}
-            className={`text-white font-bold px-4 grow w-40 h-8
+            className={`font-bold px-4 grow w-40 h-8
           bg-gradient-to-b from-slate-700 via-slate-500 to-slate-700 
           hover:from-slate-700 hover:via-slate-400 hover:to-slate-700 
           active:from-slate-700 active:via-slate-800 active:to-slate-700 

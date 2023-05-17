@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 type Props = {
   pageCount: number;
@@ -57,42 +57,38 @@ const ArticleListFooter = (props: Props) => {
 
   if (props.currentPage !== 1) {
     pageFooter.push(
-      <div
+      <Link
+        to={`/page/${props.currentPage - 1}`}
         key="prev"
-        className="w-14 h-10 flex justify-center items-center 
-    rounded-2xl bg-slate-700 shadow-inner shadow-slate-800"
+        className="clickable-bg w-14 h-10 flex justify-center items-center rounded-2xl"
       >
-        <NavLink to={`/page/${props.currentPage - 1}`}>prev</NavLink>
-      </div>
+        prev
+      </Link>
     );
   }
 
   for (let index = 1; index <= props.pageCount; index++) {
     if (index === props.currentPage) {
       pageFooter.push(
-        <div
-          className="w-12 h-12 flex justify-center items-center 
-            rounded-full bg-slate-700 shadow-inner shadow-slate-800"
-        >
+        <div className="bg-slate-600 shadow-inner shadow-slate-800 w-12 h-12 flex justify-center items-center rounded-full">
           {index}
         </div>
       );
     } else if (shouldRender(index)) {
       pageFooter.push(
-        <div
+        <Link
+          to={`/page/${index}`}
           key={index}
-          className="w-10 h-10 flex justify-center items-center 
-            rounded-xl bg-slate-700 shadow-inner shadow-slate-800"
+          className="clickable-bg w-10 h-10 flex justify-center items-center rounded-xl"
         >
-          <NavLink to={`/page/${index}`}>{index}</NavLink>
-        </div>
+          {index}
+        </Link>
       );
     } else if (index < props.currentPage && !leftPagePicker) {
       pageFooter.push(
         <div
           key={index}
-          className="w-10 h-10 flex justify-center items-center 
-            rounded-xl bg-slate-700 shadow-inner shadow-slate-800"
+          className="clickable-bg w-10 h-10 flex justify-center items-center rounded-xl"
         >
           <input
             value={leftInput}
@@ -102,8 +98,7 @@ const ArticleListFooter = (props: Props) => {
             onKeyDown={(e) => {
               if (e.key === "Enter") leftInputHandler(e);
             }}
-            className={`w-10 h-10 flex justify-center items-center text-center
-            rounded-xl bg-slate-700 shadow-inner shadow-slate-800
+            className={`clickable-bg w-10 h-10 flex justify-center items-center text-center rounded-xl
             ${leftError ? "border-2 border-red-500" : ""}`}
           />
         </div>
@@ -113,8 +108,7 @@ const ArticleListFooter = (props: Props) => {
       pageFooter.push(
         <div
           key={index}
-          className="w-10 h-10 flex justify-center items-center 
-            rounded-xl bg-slate-700 shadow-inner shadow-slate-800"
+          className="clickable-bg w-10 h-10 flex justify-center items-center rounded-xl"
         >
           <input
             value={rightInput}
@@ -124,8 +118,7 @@ const ArticleListFooter = (props: Props) => {
             onKeyDown={(e) => {
               if (e.key === "Enter") rightInputHandler(e);
             }}
-            className={`w-10 h-10 flex justify-center items-center text-center
-            rounded-xl bg-slate-700 shadow-inner shadow-slate-800
+            className={`clickable-bg w-10 h-10 flex justify-center items-center text-center rounded-xl
             ${rightError ? "border-2 border-red-500" : ""}`}
           />
         </div>
@@ -135,13 +128,13 @@ const ArticleListFooter = (props: Props) => {
   }
   if (props.currentPage !== props.pageCount) {
     pageFooter.push(
-      <div
+      <Link
+        to={`/page/${props.currentPage + 1}`}
         key="next"
-        className="w-14 h-10 flex justify-center items-center p-2
-          rounded-xl bg-slate-700 shadow-inner shadow-slate-800"
+        className="clickable-bg w-14 h-10 flex justify-center items-center p-2 rounded-xl"
       >
-        <NavLink to={`/page/${props.currentPage + 1}`}>next</NavLink>
-      </div>
+        next
+      </Link>
     );
   }
 

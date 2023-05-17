@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaAngleLeft, FaAngleRight, FaHome } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
@@ -14,38 +14,38 @@ const SingleArticleFooter = (props: Props) => {
     <IconContext.Provider value={{ size: "36px", color: "rgb(203 213 225)" }}>
       <div className="grid grid-cols-12 w-1/2 py-4 grow">
         {props.nextNanoId && (
-          <NavLink
+          <Link
             to={`/article/${props.nextNanoId}`}
-            className="bg-slate-800 rounded-full flex flex-row justify-start items-center col-start-1 col-span-4"
+            className="clickable-bg rounded-full flex flex-row justify-start items-center col-start-1 col-span-4 truncate"
           >
             <FaAngleLeft />
             <div className="px-4 py-1">
               <div className="text-xs/3">Next article</div>
-              <div className="text-lg">{props.nextTitle}</div>
+              <div className="text-md">{props.nextTitle}</div>
             </div>
-          </NavLink>
+          </Link>
         )}
 
-        <NavLink
+        <Link
           to="/"
-          className="bg-slate-800 rounded-full flex flex-row text-white justify-center items-center col-start-6 col-span-2"
+          className="clickable-bg rounded-full flex flex-row text-white justify-center items-center col-start-6 col-span-2"
         >
           <FaHome />
-        </NavLink>
+        </Link>
 
         {props.prevNanoId && (
-          <NavLink
+          <Link
             to={`/article/${props.prevNanoId}`}
-            className="bg-slate-800 rounded-full flex flex-row text-white justify-end items-center col-start-9 col-span-4"
+            className="clickable-bg rounded-full flex flex-row justify-end items-center col-start-9 col-span-4 truncate"
           >
             <div className="px-4">
               <div className="text-xs/3 text-right">Previous article</div>
-              <div className="text-lg truncate">{props.prevTitle}</div>
+              <div className="text-md truncate">{props.prevTitle}</div>
             </div>
             <div>
               <FaAngleRight />
             </div>
-          </NavLink>
+          </Link>
         )}
       </div>
     </IconContext.Provider>

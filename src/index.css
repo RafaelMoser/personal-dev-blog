@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .base-bg {
+    @apply bg-slate-900 text-slate-200 antialiased;
+  }
+
+  .element-bg {
+    @apply bg-slate-800;
+  }
+
+  .clickable-bg {
+    @apply transition-colors duration-75 ease-in-out bg-slate-700 hover:bg-slate-600 active:bg-slate-700;
+  }
+
+  .textinput-bg {
+    @apply bg-slate-600;
+  }
+}

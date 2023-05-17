@@ -35,8 +35,9 @@ const InformationBar = () => {
     <>
       {loginModal && <LoginModal closeModal={closeLoginModal} />}
       <div
-        className={`transition-all ease-in-out duration-500
-        fixed top-0 flex flex-col space-y-8 align-middle w-60 h-screen bg-slate-800 p-8
+        className={`element-bg
+        transition-all ease-in-out duration-500
+        fixed top-0 flex flex-col space-y-8 align-middle w-60 h-screen p-8
         ${showInfoBar ? "left-0" : "-left-52"}`}
       >
         <button
