@@ -7,11 +7,10 @@ import {
   blogUpdateDataLoader,
   infoBarLoader,
   singleArticleLoader,
-} from "./loaders/HttpRequests";
+} from "./util/Loaders";
 import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
 import SingleArticlePage from "./pages/article/SingleArticle";
-import AuthContext from "./store/auth-context";
 import AdminPage from "./pages/Admin";
 import NewArticlePage from "./pages/admin/NewArticle";
 import UpdateArticlePage from "./pages/admin/UpdateArticle";
@@ -67,11 +66,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <AuthContext.Provider value={{ accessToken: "" }}>
-      <RouterProvider router={router} />
-    </AuthContext.Provider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
