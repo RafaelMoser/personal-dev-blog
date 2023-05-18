@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 
 import { LinkButtons } from "./LinkButtons";
-import { useLoaderData } from "react-router-dom";
+import { Await, useLoaderData } from "react-router-dom";
 import { IconContext } from "react-icons";
 import LoginModal from "./Login/LoginModal";
 
@@ -17,8 +17,8 @@ const InformationBar = () => {
   const [showInfoBar, setShowInfoBar] = useState(true);
   const [loginModal, setLoginModal] = useState(false);
 
-  const { profileImageUrl, infoBlurb, github, linkedin } =
-    useLoaderData() as ProfileData;
+  const blogInfo = useLoaderData() as ProfileData;
+  console.log(blogInfo);
 
   const showInfoBarHandler = () => {
     setShowInfoBar(!showInfoBar);
@@ -57,14 +57,37 @@ const InformationBar = () => {
           </IconContext.Provider>
         </button>
         <div className="rounded-full align-middle shadow-2xl border-4 border-slate-600 z-50">
-          <img
-            className="rounded-full align-middle w-auto h-auto"
-            src={profileImageUrl}
-          />
+          <Suspense>
+            <Await resolve={blogInfo}>
+              {(loadedBlogInfo) => (
+                <img
+                  className="rounded-full align-middle w-auto h-auto"
+                  src={loadedBlogInfo.blogInfo.profileImageUrl}
+                />
+              )}
+            </Await>
+          </Suspense>
         </div>
-        <LinkButtons github={github} linkedin={linkedin} />
+        <Suspense>
+          <Await resolve={blogInfo}>
+            {(loadedBlogInfo) => (
+              <LinkButtons
+                github={loadedBlogInfo.blogInfo.github}
+                linkedin={loadedBlogInfo.blogInfo.linkedin}
+              />
+            )}
+          </Await>{" "}
+        </Suspense>
         <span className="h-0.5 w-full bg-slate-600" />
-        <div className="text-center text-sm font-mono">{infoBlurb}</div>
+        <Suspense>
+          <Await resolve={blogInfo}>
+            {(loadedBlogInfo) => (
+              <div className="text-center text-sm font-mono">
+                {loadedBlogInfo.blogInfo.infoBlurb}
+              </div>
+            )}
+          </Await>
+        </Suspense>
         <div className="grow" />
         <button
           className="h-10 w-10 border-slate-700 border-8 rounded-full 

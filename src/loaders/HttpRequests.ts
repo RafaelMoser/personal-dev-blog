@@ -16,7 +16,7 @@ const loadPageCount = async () => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const articlePageLoader = ({ params }: { params: any }) => {
+const articlePageLoader = ({ params }: any) => {
   const page = parseInt(params.page) || 1;
   return defer({
     articles: loadArticles(page),
@@ -24,6 +24,7 @@ const articlePageLoader = ({ params }: { params: any }) => {
   });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const singleArticleLoader = async ({ params: { nanoId } }: any) => {
   return await axios
     .get(`${SERVER_URL}/article/single/${nanoId}`)
@@ -31,7 +32,11 @@ const singleArticleLoader = async ({ params: { nanoId } }: any) => {
 };
 
 const infoBarLoader = async () => {
-  return await axios.get(`${SERVER_URL}/aboutme/`).then((res) => res.data);
+  return defer({
+    blogInfo: await axios
+      .get(`${SERVER_URL}/blogInfo/`)
+      .then((res) => res.data),
+  });
 };
 
 const loginRequest = async (username: string, password: string) => {

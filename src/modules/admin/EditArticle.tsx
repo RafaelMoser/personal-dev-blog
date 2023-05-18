@@ -1,5 +1,4 @@
 type Props = {
-  updateMode: boolean;
   title?: string;
   articleBody?: string;
 };
