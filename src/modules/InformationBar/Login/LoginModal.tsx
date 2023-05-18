@@ -1,13 +1,14 @@
 import { createPortal } from "react-dom";
 import { IconContext } from "react-icons";
 import { CgClose } from "react-icons/cg";
+import { Form } from "react-router-dom";
 type Props = {
   closeModal: () => void;
 };
 
 const LoginModal = (props: Props) => {
   return createPortal(
-    <>
+    <Form method="post">
       <div
         className="bg-black/25 fixed top-0 left-0 w-full h-screen z-10 flex"
         onClick={props.closeModal}
@@ -23,19 +24,39 @@ const LoginModal = (props: Props) => {
         </div>
         <div className="flex flex-col p-10 space-y-10">
           <div className="grow flex flex-col space-y-2">
-            <label className="text-slate-200 font-bold text-lg">Login</label>
-            <input className="textinput-bg px-2 h-8 rounded-md" />
+            <label
+              htmlFor="username"
+              className="text-slate-200 font-bold text-lg"
+            >
+              Username
+            </label>
+            <input
+              id="username"
+              type="text"
+              name="username"
+              className="textinput-bg px-2 h-8 rounded-md"
+            />
           </div>
           <div className="grow flex flex-col space-y-2">
-            <label className="text-slate-200 font-bold text-lg">Password</label>
-            <input className="textinput-bg px-2 h-8 rounded-md" />
+            <label
+              htmlFor="password"
+              className="text-slate-200 font-bold text-lg"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              className="textinput-bg px-2 h-8 rounded-md"
+            />
           </div>
           <button className="clickable-bg rounded-xl py-2 px-8 self-end text-slate-200 font-bold text-lg">
             Submit
           </button>
         </div>
       </div>
-    </>,
+    </Form>,
     document.getElementById("modal") as HTMLElement
   );
 };
