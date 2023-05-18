@@ -5,6 +5,7 @@ import { LinkButtons } from "./LinkButtons";
 import { Await, useLoaderData } from "react-router-dom";
 import { IconContext } from "react-icons";
 import LoginModal from "./Login/LoginModal";
+import ExtraNavigation from "./ExtraNavigation";
 
 type ProfileData = {
   profileImageUrl: string;
@@ -77,7 +78,8 @@ const InformationBar = () => {
             )}
           </Await>
         </Suspense>
-        <div className="grow" />
+
+        <ExtraNavigation />
         <button
           className="h-10 w-10 border-slate-700 border-8 rounded-full 
        hover:w-44 transition-all ease-out duration-200 overflow-hidden
