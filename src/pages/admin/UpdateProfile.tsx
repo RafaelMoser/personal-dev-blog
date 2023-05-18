@@ -1,4 +1,4 @@
-import EditBlogInfo from "../modules/admin/EditBlogInfo";
+import EditBlogInfo from "../../modules/admin/EditBlogInfo";
 
 const UpdateProfilePage = () => {
   return <EditBlogInfo />;

@@ -1,7 +1,9 @@
 import { Await, useLoaderData } from "react-router-dom";
-import ArticleContainer, { Article } from "../modules/Article/ArticleContainer";
+import ArticleContainer, {
+  Article,
+} from "../../modules/Article/ArticleContainer";
 import { Suspense } from "react";
-import SingleArticleFooter from "../modules/Article/SingleArticleFooter";
+import SingleArticleFooter from "../../modules/Article/SingleArticleFooter";
 
 type SingleArticleData = {
   article: Article;

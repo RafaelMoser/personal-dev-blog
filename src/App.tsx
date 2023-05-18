@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/Root";
-import ArticleListPage from "./pages/ArticleList";
+import ArticleListPage from "./pages/article/ArticleList";
 import AboutMePage from "./pages/AboutMe";
 import {
   articlePageLoader,
@@ -10,12 +10,12 @@ import {
 } from "./loaders/HttpRequests";
 import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
-import SingleArticlePage from "./pages/SingleArticle";
+import SingleArticlePage from "./pages/article/SingleArticle";
 import AuthContext from "./store/auth-context";
 import AdminPage from "./pages/Admin";
-import NewArticlePage from "./pages/NewArticle";
-import UpdateArticlePage from "./pages/UpdateArticle";
-import UpdateProfilePage from "./pages/UpdateProfile";
+import NewArticlePage from "./pages/admin/NewArticle";
+import UpdateArticlePage from "./pages/admin/UpdateArticle";
+import UpdateProfilePage from "./pages/admin/UpdateProfile";
 
 const BLOG_NAME = "Rafael Moser's dev blog";
 
