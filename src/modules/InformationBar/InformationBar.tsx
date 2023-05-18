@@ -12,6 +12,7 @@ type ProfileData = {
   infoBlurb: string;
   github?: string;
   linkedin?: string;
+  email?: string;
 };
 
 const InformationBar = () => {
@@ -69,6 +70,7 @@ const InformationBar = () => {
                 <LinkButtons
                   github={loadedBlogInfo.blogInfo.github}
                   linkedin={loadedBlogInfo.blogInfo.linkedin}
+                  email={loadedBlogInfo.blogInfo.email}
                 />
                 <span className="h-0.5 w-full bg-slate-600" />
                 <div className="text-center text-sm font-mono">
