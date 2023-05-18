@@ -14,3 +14,16 @@ const updateBlogInfoAction = async ({ request }: any) => {
 
   //axios send
 };
+
+const sendLoginAction = async ({ request }: any) => {
+  const data = await request.formData();
+  const userData = {
+    username: data.get("username"),
+    password: data.get("password"),
+  };
+
+  //axios send, get tokens back
+
+  localStorage.setItem("authToken", "123");
+  localStorage.setItem("authToken", "123");
+};
