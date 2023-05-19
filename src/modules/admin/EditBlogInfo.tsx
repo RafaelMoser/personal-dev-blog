@@ -31,7 +31,7 @@ const EditBlogInfo = () => {
                   type="url"
                   name="profileImageUrl"
                   className="textinput-bg rounded-md p-2"
-                  value={loadedData.profileImageUrl}
+                  value={loadedData.data.profileImageUrl}
                 />
               </div>
               <div className="flex flex-col">
@@ -46,7 +46,7 @@ const EditBlogInfo = () => {
                   type="text"
                   name="infoBlurb"
                   className="textinput-bg rounded-md p-2"
-                  value={loadedData.infoBlurb}
+                  value={loadedData.data.infoBlurb}
                 />
               </div>
               <div className="flex flex-row justify-between">
@@ -59,7 +59,7 @@ const EditBlogInfo = () => {
                     type="email"
                     name="email"
                     className="textinput-bg rounded-md p-2 w-44"
-                    value={loadedData.email}
+                    value={loadedData.data.email}
                   />
                 </div>
                 <div className="flex flex-col">

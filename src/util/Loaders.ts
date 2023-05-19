@@ -1,5 +1,5 @@
 import axios from "axios";
-import { defer } from "react-router-dom";
+import { defer, json, redirect } from "react-router-dom";
 
 const SERVER_URL = "http://localhost:5000";
 
@@ -32,11 +32,7 @@ const singleArticleLoader = async ({ params: { nanoId } }: any) => {
 };
 
 const infoBarLoader = async () => {
-  return defer({
-    blogInfo: await axios
-      .get(`${SERVER_URL}/blogInfo/`)
-      .then((res) => res.data),
-  });
+  return await axios.get(`${SERVER_URL}/blogInfo/`).then((res) => res.data);
 };
 
 const loginRequest = async (username: string, password: string) => {
@@ -47,7 +43,21 @@ const loginRequest = async (username: string, password: string) => {
 };
 
 const blogUpdateDataLoader = async () => {
-  return axios.get(`${SERVER_URL}/admin/profile`).then((res) => res.data);
+  return await axios.get(`${SERVER_URL}/admin/profile`).then((res) => res.data);
+};
+
+const authLoader = () => {
+  const authToken = localStorage.getItem("authToken");
+  const hasToken = Boolean(authToken);
+  return { authToken, hasToken };
+};
+
+const checkAuthLoader = () => {
+  const { authToken, hasToken } = authLoader();
+  if (!hasToken) {
+    throw new Response("Unauthorized", { status: 401 });
+  }
+  return authToken;
 };
 
 export {
@@ -57,4 +67,6 @@ export {
   singleArticleLoader,
   loginRequest,
   blogUpdateDataLoader,
+  authLoader,
+  checkAuthLoader,
 };
