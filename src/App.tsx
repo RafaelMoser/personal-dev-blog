@@ -2,12 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import ArticleListPage from "./pages/article/ArticleList";
 import AboutMePage from "./pages/AboutMe";
-import {
-  articlePageLoader,
-  blogUpdateDataLoader,
-  infoBarLoader,
-  singleArticleLoader,
-} from "./util/Loaders";
 import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
 import SingleArticlePage from "./pages/article/SingleArticle";
@@ -15,20 +9,25 @@ import AdminPage from "./pages/Admin";
 import NewArticlePage from "./pages/admin/NewArticle";
 import UpdateArticlePage from "./pages/admin/UpdateArticle";
 import UpdateProfilePage from "./pages/admin/UpdateProfile";
-
+import * as loaders from "./util/Loaders";
+import * as actions from "./util/Actions";
 const BLOG_NAME = "Rafael Moser's dev blog";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
-    loader: infoBarLoader,
+    loader: loaders.infoBarLoader,
     errorElement: <ErrorPage />,
     children: [
       {
+        path: "/login",
+        action: actions.sendLoginAction,
+      },
+      {
         element: <HomePage blogTitle={BLOG_NAME} />,
         id: "home",
-        loader: articlePageLoader,
+        loader: loaders.articlePageLoader,
         children: [
           { path: "/", element: <ArticleListPage /> },
           { path: "/home", element: <ArticleListPage /> },
@@ -39,7 +38,7 @@ const router = createBrowserRouter([
       {
         path: "/article/:nanoId",
         element: <SingleArticlePage />,
-        loader: singleArticleLoader,
+        loader: loaders.singleArticleLoader,
       },
       { path: "/aboutme", element: <AboutMePage /> },
       {
@@ -57,7 +56,7 @@ const router = createBrowserRouter([
           {
             path: "/admin/updateProfile",
             element: <UpdateProfilePage />,
-            loader: blogUpdateDataLoader,
+            loader: loaders.blogUpdateDataLoader,
           },
         ],
       },

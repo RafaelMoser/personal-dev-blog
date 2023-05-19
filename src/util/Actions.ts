@@ -1,3 +1,8 @@
+import axios from "axios";
+import { redirect } from "react-router-dom";
+
+const SERVER_URL = "http://localhost:5000";
+
 const updateBlogInfoAction = async ({ request }: any) => {
   const data = await request.formData();
   const email = data.get("email");
@@ -21,9 +26,15 @@ const sendLoginAction = async ({ request }: any) => {
     username: data.get("username"),
     password: data.get("password"),
   };
+  const response = await axios
+    .post(`${SERVER_URL}/login`, userData, {
+      headers: { "Content-Type": "application/json" },
+    })
+    .then((res) => res.data);
 
-  //axios send, get tokens back
-
-  localStorage.setItem("authToken", "123");
-  localStorage.setItem("authToken", "123");
+  localStorage.setItem("accessToken", response.access_token);
+  localStorage.setItem("refreshToken", response.refresh_token);
+  return redirect("/");
 };
+
+export { sendLoginAction };

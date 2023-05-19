@@ -2,13 +2,14 @@ import { createPortal } from "react-dom";
 import { IconContext } from "react-icons";
 import { CgClose } from "react-icons/cg";
 import { Form } from "react-router-dom";
+
 type Props = {
   closeModal: () => void;
 };
 
 const LoginModal = (props: Props) => {
   return createPortal(
-    <Form method="post">
+    <Form method="post" action="/login">
       <div
         className="bg-black/25 fixed top-0 left-0 w-full h-screen z-10 flex"
         onClick={props.closeModal}

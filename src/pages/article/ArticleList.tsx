@@ -2,7 +2,7 @@ import { Await, useParams, useRouteLoaderData } from "react-router-dom";
 import { Suspense, useEffect, useState } from "react";
 import ArticleList from "../../modules/Article/ArticleList";
 import ArticleListFooter from "../../modules/Article/ArticleListFooter";
-import { loadArticles } from "../../loaders/HttpRequests";
+import { loadArticles } from "../../util/Loaders";
 import { Article } from "../../modules/Article/ArticleContainer";
 
 type ArticleListData = {
