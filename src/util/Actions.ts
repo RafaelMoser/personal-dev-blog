@@ -30,7 +30,8 @@ const sendLoginAction = async ({ request }: any) => {
     .post(`${SERVER_URL}/login`, userData, {
       headers: { "Content-Type": "application/json" },
     })
-    .then((res) => res.data);
+    .then((res) => res.data)
+    .catch();
 
   localStorage.setItem("accessToken", response.access_token);
   localStorage.setItem("refreshToken", response.refresh_token);

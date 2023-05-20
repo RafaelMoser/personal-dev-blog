@@ -6,6 +6,7 @@ import { Await, useLoaderData, useRouteLoaderData } from "react-router-dom";
 import { IconContext } from "react-icons";
 import LoginModal from "./Login/LoginModal";
 import ExtraNavigation from "./ExtraNavigation";
+import { useAccessToken } from "../../util/Hooks";
 
 type ProfileData = {
   profileImageUrl: string;
@@ -21,7 +22,7 @@ const InformationBar = () => {
   const [logoutModal, setLogoutModal] = useState(false);
 
   const blogInfo = useLoaderData() as ProfileData;
-  const { hasToken } = useRouteLoaderData("root") as any;
+  const { hasToken } = useAccessToken();
   const showInfoBarHandler = () => {
     setShowInfoBar(!showInfoBar);
   };
@@ -84,7 +85,7 @@ const InformationBar = () => {
                 />
                 <span className="h-0.5 w-full bg-slate-600" />
                 <div className="text-center text-sm font-mono">
-                  {loadedBlogInfo.blogInfo.infoBlurb}
+                  {loadedBlogInfo.infoBlurb}
                 </div>
               </>
             )}

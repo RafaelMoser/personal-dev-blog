@@ -1,13 +1,16 @@
 import { createPortal } from "react-dom";
 import { IconContext } from "react-icons";
 import { CgClose } from "react-icons/cg";
-import { Form } from "react-router-dom";
+import { Form, redirect, useNavigation } from "react-router-dom";
 
 type Props = {
   closeModal: () => void;
 };
 
 const LoginModal = (props: Props) => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
   return createPortal(
     <Form method="post" action="/login">
       <div
@@ -52,7 +55,10 @@ const LoginModal = (props: Props) => {
               className="textinput-bg px-2 h-8 rounded-md"
             />
           </div>
-          <button className="clickable-bg rounded-xl py-2 px-8 self-end text-slate-200 font-bold text-lg">
+          <button
+            disabled={isSubmitting}
+            className="clickable-bg rounded-xl py-2 px-8 self-end text-slate-200 font-bold text-lg"
+          >
             Submit
           </button>
         </div>

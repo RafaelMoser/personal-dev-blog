@@ -46,20 +46,6 @@ const blogUpdateDataLoader = async () => {
   return await axios.get(`${SERVER_URL}/admin/profile`).then((res) => res.data);
 };
 
-const authLoader = () => {
-  const authToken = localStorage.getItem("authToken");
-  const hasToken = Boolean(authToken);
-  return { authToken, hasToken };
-};
-
-const checkAuthLoader = () => {
-  const { authToken, hasToken } = authLoader();
-  if (!hasToken) {
-    throw new Response("Unauthorized", { status: 401 });
-  }
-  return authToken;
-};
-
 export {
   loadArticles,
   articlePageLoader,
@@ -67,6 +53,4 @@ export {
   singleArticleLoader,
   loginRequest,
   blogUpdateDataLoader,
-  authLoader,
-  checkAuthLoader,
 };

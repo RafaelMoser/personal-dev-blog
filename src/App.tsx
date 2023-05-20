@@ -16,60 +16,47 @@ const BLOG_NAME = "Rafael Moser's dev blog";
 const router = createBrowserRouter([
   {
     path: "/",
-    id: "root",
-    loader: loaders.authLoader,
+    element: <RootLayout />,
+    loader: loaders.infoBarLoader,
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/",
-        element: <RootLayout />,
-        loader: loaders.infoBarLoader,
+        path: "/login",
+        action: actions.sendLoginAction,
+      },
+      {
+        element: <HomePage blogTitle={BLOG_NAME} />,
+        id: "home",
+        loader: loaders.articlePageLoader,
+        children: [
+          { path: "/", element: <ArticleListPage /> },
+          { path: "/home", element: <ArticleListPage /> },
+          { path: "/page/", element: <ArticleListPage /> },
+          { path: "/page/:page", element: <ArticleListPage /> },
+        ],
+      },
+      {
+        path: "/article/:nanoId",
+        element: <SingleArticlePage />,
+        loader: loaders.singleArticleLoader,
+      },
+      { path: "/aboutme", element: <AboutMePage /> },
+      {
+        path: "/admin",
+        element: <AdminPage />,
         children: [
           {
-            path: "/login",
-            action: actions.sendLoginAction,
+            path: "/admin/newArticle",
+            element: <NewArticlePage />,
           },
           {
-            element: <HomePage blogTitle={BLOG_NAME} />,
-            id: "home",
-            loader: loaders.articlePageLoader,
-            children: [
-              { path: "/", element: <ArticleListPage /> },
-              { path: "/home", element: <ArticleListPage /> },
-              { path: "/page/", element: <ArticleListPage /> },
-              { path: "/page/:page", element: <ArticleListPage /> },
-            ],
+            path: "/admin/updateArticle",
+            element: <UpdateArticlePage />,
           },
           {
-            path: "/article/:nanoId",
-            element: <SingleArticlePage />,
-            loader: loaders.singleArticleLoader,
-          },
-          { path: "/aboutme", element: <AboutMePage /> },
-          {
-            path: "/admin",
-            element: <AdminPage />,
-            children: [
-              {
-                path: "/admin/newArticle",
-                element: <NewArticlePage />,
-                loader: loaders.checkAuthLoader,
-              },
-              {
-                path: "/admin/updateArticle",
-                element: <UpdateArticlePage />,
-                loader: loaders.checkAuthLoader,
-              },
-              {
-                path: "/admin/updateProfile",
-                element: <UpdateProfilePage />,
-                loader: () =>
-                  defer({
-                    auth: loaders.checkAuthLoader(),
-                    data: loaders.blogUpdateDataLoader(),
-                  }),
-              },
-            ],
+            path: "/admin/updateProfile",
+            element: <UpdateProfilePage />,
+            loader: loaders.blogUpdateDataLoader,
           },
         ],
       },
