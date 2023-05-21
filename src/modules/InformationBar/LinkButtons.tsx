@@ -10,7 +10,7 @@ type Props = {
 
 export const LinkButtons = (props: Props) => {
   const buttons = [
-    { link: props.email, icon: <MdMail /> },
+    { link: Boolean(props.email) && `mailto:${props.email}`, icon: <MdMail /> },
     { link: props.github, icon: <FaGithub /> },
     { link: props.linkedin, icon: <FaLinkedin /> },
   ];

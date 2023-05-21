@@ -43,7 +43,14 @@ const loginRequest = async (username: string, password: string) => {
 };
 
 const blogUpdateDataLoader = async () => {
-  return await axios.get(`${SERVER_URL}/admin/profile`).then((res) => res.data);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  };
+  return await axios
+    .get(`${SERVER_URL}/admin/profile`, config)
+    .then((res) => res.data);
 };
 
 export {

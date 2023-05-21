@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import { redirect } from "react-router-dom";
 
@@ -17,7 +18,15 @@ const updateBlogInfoAction = async ({ request }: any) => {
     ...(linkedin.trim() && { linkedin }),
   };
 
-  //axios send
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  };
+
+  return await axios
+    .patch(`${SERVER_URL}/admin/profile`, blogData, config)
+    .then((res) => res.data);
 };
 
 const sendLoginAction = async ({ request }: any) => {
@@ -38,4 +47,4 @@ const sendLoginAction = async ({ request }: any) => {
   return redirect("/");
 };
 
-export { sendLoginAction };
+export { sendLoginAction, updateBlogInfoAction };

@@ -1,4 +1,4 @@
-import { createBrowserRouter, defer, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import ArticleListPage from "./pages/article/ArticleList";
 import AboutMePage from "./pages/AboutMe";
@@ -57,6 +57,7 @@ const router = createBrowserRouter([
             path: "/admin/updateProfile",
             element: <UpdateProfilePage />,
             loader: loaders.blogUpdateDataLoader,
+            action: actions.updateBlogInfoAction,
           },
         ],
       },

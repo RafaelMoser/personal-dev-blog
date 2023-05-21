@@ -9,7 +9,7 @@ const AdminPage = () => {
   }
   return (
     <div className="flex flex-col space-y-8 items-center p-10">
-      <text className="text-5xl font-bold">Admin Page</text>
+      <h1 className="text-5xl font-bold">Admin Page</h1>
       <ModuleSelector />
     </div>
   );
