@@ -83,14 +83,43 @@ const sendLoginAction = async ({ request }: any) => {
     .then((res) => res.data)
     .catch();
 
+  const tokenExpiration = new Date();
+  tokenExpiration.setTime(tokenExpiration.getTime() + 10 * 60 * 1000);
   localStorage.setItem("accessToken", response.access_token);
   localStorage.setItem("refreshToken", response.refresh_token);
+  localStorage.setItem("tokenExpiration", tokenExpiration.toISOString());
   return redirect("/");
 };
 
+const sendLogoutAction = async () => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  };
+  await axios.put(`${SERVER_URL}/logout`, config).then((res) => res.data);
+};
+
+const refreshTokenAction = async () => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("refreshToken")}`,
+    },
+  };
+  const response = await axios
+    .post(`${SERVER_URL}/refresh`, {}, config)
+    .then((res) => res.data);
+  const tokenExpiration = new Date();
+  tokenExpiration.setHours(tokenExpiration.getHours() + 1);
+  localStorage.setItem("accessToken", response.access_token);
+  localStorage.setItem("tokenExpiration", tokenExpiration.toISOString());
+  return "refresh";
+};
+
 export {
-  sendLoginAction,
-  updateBlogInfoAction,
-  updateArticleAction,
   newArticleAction,
+  updateArticleAction,
+  updateBlogInfoAction,
+  sendLoginAction,
+  refreshTokenAction,
 };

@@ -12,6 +12,8 @@ import UpdateProfilePage from "./pages/admin/UpdateProfile";
 import * as loaders from "./util/Loaders";
 import * as actions from "./util/Actions";
 import UpdateArticlePage from "./pages/admin/UpdateArticle";
+import { useAccessToken } from "./util/Hooks";
+import { useEffect } from "react";
 const BLOG_NAME = "Rafael Moser's dev blog";
 
 const router = createBrowserRouter([
@@ -76,6 +78,22 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const { accessToken, tokenDuration } = useAccessToken();
+
+  useEffect(() => {
+    if (!accessToken) {
+      return;
+    }
+    if (accessToken === "EXPIRED") {
+      actions.refreshTokenAction();
+      return;
+    }
+
+    setTimeout(() => {
+      actions.refreshTokenAction();
+    }, tokenDuration);
+  }, [accessToken]);
+
   return <RouterProvider router={router} />;
 }
 
