@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
-import { defer, json, redirect } from "react-router-dom";
+import { defer } from "react-router-dom";
 
 const SERVER_URL = "http://localhost:5000";
 
@@ -15,7 +16,6 @@ const loadPageCount = async () => {
     .then((res) => res.data);
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const articlePageLoader = ({ params }: any) => {
   const page = parseInt(params.page) || 1;
   return defer({
@@ -24,7 +24,6 @@ const articlePageLoader = ({ params }: any) => {
   });
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const singleArticleLoader = async ({ params: { nanoId } }: any) => {
   return await axios
     .get(`${SERVER_URL}/article/single/${nanoId}`)

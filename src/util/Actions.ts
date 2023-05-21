@@ -24,9 +24,50 @@ const updateBlogInfoAction = async ({ request }: any) => {
     },
   };
 
-  return await axios
+  await axios
     .patch(`${SERVER_URL}/admin/profile`, blogData, config)
     .then((res) => res.data);
+
+  return redirect("/admin");
+};
+
+const updateArticleAction = async ({ request, params }: any) => {
+  const data = await request.formData();
+  const blogData = {
+    title: data.get("title"),
+    articleBody: data.get("articleBody"),
+  };
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  };
+
+  await axios
+    .patch(`${SERVER_URL}/article/single/${params.nanoId}`, blogData, config)
+    .then((res) => res.data);
+
+  return redirect("/admin");
+};
+
+const newArticleAction = async ({ request }: any) => {
+  const data = await request.formData();
+  const blogData = {
+    title: data.get("title"),
+    articleBody: data.get("articleBody"),
+  };
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+    },
+  };
+  await axios
+    .put(`${SERVER_URL}/article/new`, blogData, config)
+    .then((res) => res.data);
+
+  return redirect("/admin");
 };
 
 const sendLoginAction = async ({ request }: any) => {
@@ -47,4 +88,9 @@ const sendLoginAction = async ({ request }: any) => {
   return redirect("/");
 };
 
-export { sendLoginAction, updateBlogInfoAction };
+export {
+  sendLoginAction,
+  updateBlogInfoAction,
+  updateArticleAction,
+  newArticleAction,
+};

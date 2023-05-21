@@ -7,10 +7,11 @@ import HomePage from "./pages/Home";
 import SingleArticlePage from "./pages/article/SingleArticle";
 import AdminPage from "./pages/Admin";
 import NewArticlePage from "./pages/admin/NewArticle";
-import UpdateArticlePage from "./pages/admin/UpdateArticle";
+import UpdateArticlePickerPage from "./pages/admin/UpdateArticlePicker";
 import UpdateProfilePage from "./pages/admin/UpdateProfile";
 import * as loaders from "./util/Loaders";
 import * as actions from "./util/Actions";
+import UpdateArticlePage from "./pages/admin/UpdateArticle";
 const BLOG_NAME = "Rafael Moser's dev blog";
 
 const router = createBrowserRouter([
@@ -48,10 +49,19 @@ const router = createBrowserRouter([
           {
             path: "/admin/newArticle",
             element: <NewArticlePage />,
+            action: actions.newArticleAction,
           },
           {
             path: "/admin/updateArticle",
-            element: <UpdateArticlePage />,
+            element: <UpdateArticlePickerPage />,
+            children: [
+              {
+                path: "/admin/updateArticle/:nanoId",
+                element: <UpdateArticlePage />,
+                loader: loaders.singleArticleLoader,
+                action: actions.updateArticleAction,
+              },
+            ],
           },
           {
             path: "/admin/updateProfile",

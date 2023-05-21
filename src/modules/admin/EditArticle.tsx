@@ -3,11 +3,15 @@ import { Form } from "react-router-dom";
 type Props = {
   title?: string;
   articleBody?: string;
+  new: boolean;
 };
 
 const EditArticle = (props: Props) => {
   return (
-    <Form className="flex flex-col element-bg p-4 rounded-lg space-y-4">
+    <Form
+      method={props.new ? "PUT" : "PATCH"}
+      className="flex flex-col element-bg p-4 rounded-lg space-y-4"
+    >
       <div className="flex flex-col">
         <label htmlFor="title" className="font-bold text-slate-300">
           Title
@@ -17,7 +21,7 @@ const EditArticle = (props: Props) => {
           type="text"
           name="title"
           className="rounded-md textinput-bg p-2"
-          value={props.title}
+          defaultValue={props.title}
         />
       </div>
       <div className="flex flex-col">
@@ -25,8 +29,10 @@ const EditArticle = (props: Props) => {
           Article Body
         </label>
         <textarea
+          id="articleBody"
+          name="articleBody"
           className="h-[500px] rounded-md textinput-bg p-2 resize-none"
-          value={props.articleBody}
+          defaultValue={props.articleBody}
         />
       </div>
       <button className="clickable-bg p-2 self-end rounded-md">Submit</button>

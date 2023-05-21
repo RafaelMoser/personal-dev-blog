@@ -43,6 +43,7 @@ const EditBlogInfo = () => {
           </label>
           <input
             id="information blurb"
+            type="text"
             name="infoBlurb"
             className="textinput-bg rounded-md p-2"
             defaultValue={loadedData.infoBlurb}
