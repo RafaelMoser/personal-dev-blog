@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
 import { IconContext } from "react-icons";
 import { CgClose } from "react-icons/cg";
-import { Form, redirect, useNavigation } from "react-router-dom";
+import { Form, useNavigation } from "react-router-dom";
 
 type Props = {
   closeModal: () => void;
@@ -17,7 +17,7 @@ const LoginModal = (props: Props) => {
         className="bg-black/25 fixed top-0 left-0 w-full h-screen z-10 flex"
         onClick={props.closeModal}
       />
-      <div className="element-bg fixed top-1/3 left-1/3 w-1/3 rounded-3xl z-20 ">
+      <div className="element-bg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 rounded-3xl z-20 ">
         <div
           className="clickable-bg absolute rounded-full h-8 w-8 top-2 left-2 basis-0 flex justify-center items-center"
           onClick={props.closeModal}

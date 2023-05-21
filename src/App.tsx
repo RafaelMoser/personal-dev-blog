@@ -28,6 +28,10 @@ const router = createBrowserRouter([
         action: actions.sendLoginAction,
       },
       {
+        path: "/logout",
+        action: actions.sendLogoutAction,
+      },
+      {
         element: <HomePage blogTitle={BLOG_NAME} />,
         id: "home",
         loader: loaders.articlePageLoader,
@@ -92,7 +96,7 @@ function App() {
     setTimeout(() => {
       actions.refreshTokenAction();
     }, tokenDuration);
-  }, [accessToken]);
+  }, [accessToken, tokenDuration]);
 
   return <RouterProvider router={router} />;
 }

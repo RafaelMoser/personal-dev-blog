@@ -2,11 +2,12 @@ import { Suspense, useState } from "react";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 
 import { LinkButtons } from "./LinkButtons";
-import { Await, useLoaderData, useRouteLoaderData } from "react-router-dom";
+import { Await, useLoaderData } from "react-router-dom";
 import { IconContext } from "react-icons";
 import LoginModal from "./Login/LoginModal";
 import ExtraNavigation from "./ExtraNavigation";
 import { useAccessToken } from "../../util/Hooks";
+import LogoutModal from "./Login/LogoutModal";
 
 type ProfileData = {
   profileImageUrl: string;
@@ -45,7 +46,7 @@ const InformationBar = () => {
   return (
     <>
       {loginModal && <LoginModal closeModal={closeLoginModal} />}
-      {logoutModal && <LoginModal closeModal={closeLogoutModal} />}
+      {logoutModal && <LogoutModal closeModal={closeLogoutModal} />}
       <div
         className={`element-bg
         transition-all ease-in-out duration-500

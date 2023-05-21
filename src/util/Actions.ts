@@ -97,7 +97,11 @@ const sendLogoutAction = async () => {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
   };
-  await axios.put(`${SERVER_URL}/logout`, config).then((res) => res.data);
+  await axios.post(`${SERVER_URL}/logout`, {}, config);
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("refreshToken");
+  localStorage.removeItem("tokenExpiration");
+  return redirect("/");
 };
 
 const refreshTokenAction = async () => {
@@ -122,4 +126,5 @@ export {
   updateBlogInfoAction,
   sendLoginAction,
   refreshTokenAction,
+  sendLogoutAction,
 };
