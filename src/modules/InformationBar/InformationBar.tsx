@@ -8,6 +8,7 @@ import LoginModal from "./Login/LoginModal";
 import ExtraNavigation from "./ExtraNavigation";
 import { useAccessToken } from "../../util/Hooks";
 import LogoutModal from "./Login/LogoutModal";
+import MessageModal from "../UI/MessageModal";
 
 type ProfileData = {
   profileImageUrl: string;
@@ -21,6 +22,8 @@ const InformationBar = () => {
   const [showInfoBar, setShowInfoBar] = useState(true);
   const [loginModal, setLoginModal] = useState(false);
   const [logoutModal, setLogoutModal] = useState(false);
+  const [messageModal, setMessageModal] = useState(false);
+  const [message, setMessage] = useState("");
 
   const blogInfo = useLoaderData() as ProfileData;
   const { hasToken } = useAccessToken();
@@ -40,11 +43,21 @@ const InformationBar = () => {
     setLogoutModal(true);
   };
 
-  const closeLogoutModal = () => {
+  const closeLogoutModal = (message?: string) => {
     setLogoutModal(false);
+    if (message) {
+      setMessage(message);
+      setMessageModal(true);
+    }
   };
   return (
     <>
+      {messageModal && (
+        <MessageModal
+          message={message}
+          closeModal={() => setMessageModal(false)}
+        />
+      )}
       {loginModal && <LoginModal closeModal={closeLoginModal} />}
       {logoutModal && <LogoutModal closeModal={closeLogoutModal} />}
       <div
