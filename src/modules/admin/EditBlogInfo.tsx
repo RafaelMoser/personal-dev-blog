@@ -89,10 +89,21 @@ const EditBlogInfo = () => {
         </div>
         <div className="flex flex-col">
           <label className="font-bold text-slate-300">About me page body</label>
-          <textarea
-            name="aboutMe"
-            className="textinput-bg rounded-md p-2 resize-none h-80"
-            defaultValue={loadedData.aboutMe}
+          <Editor
+            apiKey="z0kngmfsjeesr23imahs3vage6ktvbw72wupfh983cuyxauk"
+            initialValue={loadedData.aboutMe}
+            init={{
+              branding: false,
+              height: 500,
+              width: "full",
+              menubar: true,
+              plugins:
+                "preview paste searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern",
+              toolbar:
+                "formatselect | bold italic underline strikethrough | forecolor backcolor blockquote | link image media | alignleft aligncenter alignright alignjustify | numlist bullist outdent indent | removeformat",
+              image_advtab: true,
+            }}
+            textareaName="aboutMe"
           />
         </div>
         <button className="clickable-bg p-2 self-end rounded-md">Submit</button>

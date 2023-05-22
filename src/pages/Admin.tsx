@@ -8,7 +8,7 @@ const AdminPage = () => {
     throw new ErrorResponse(401, "Unauthorized", { data: "Unauthorized" });
   }
   return (
-    <div className="flex flex-col space-y-8 items-center p-10">
+    <div className="flex flex-col space-y-8 justify-center items-center p-10 m-auto w-1/3">
       <h1 className="text-5xl font-bold">Admin Page</h1>
       <ModuleSelector />
     </div>

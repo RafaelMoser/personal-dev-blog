@@ -2,7 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const ModuleSelector = () => {
   return (
     <div>
-      <div className="flex flex-row space-x-4 py-4">
+      <div className="flex flex-row justify-center space-x-4 py-4">
         <NavLink
           to="newArticle"
           className={({ isActive }) =>

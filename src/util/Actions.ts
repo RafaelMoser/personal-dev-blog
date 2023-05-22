@@ -28,7 +28,7 @@ const updateBlogInfoAction = async ({ request }: any) => {
     .patch(`${SERVER_URL}/admin/profile`, blogData, config)
     .then((res) => res.data);
 
-  return redirect("/admin");
+  return "SUCCESS";
 };
 
 const updateArticleAction = async ({ request, params }: any) => {
@@ -48,11 +48,12 @@ const updateArticleAction = async ({ request, params }: any) => {
     .patch(`${SERVER_URL}/article/single/${params.nanoId}`, blogData, config)
     .then((res) => res.data);
 
-  return redirect("/admin");
+  return "SUCCESS";
 };
 
 const newArticleAction = async ({ request }: any) => {
   const data = await request.formData();
+  console.log(data.get("articleBody"));
   const blogData = {
     title: data.get("title"),
     articleBody: data.get("articleBody"),
@@ -67,7 +68,7 @@ const newArticleAction = async ({ request }: any) => {
     .put(`${SERVER_URL}/article/new`, blogData, config)
     .then((res) => res.data);
 
-  return redirect("/admin");
+  return "SUCCESS";
 };
 
 const sendLoginAction = async ({ request }: any) => {
