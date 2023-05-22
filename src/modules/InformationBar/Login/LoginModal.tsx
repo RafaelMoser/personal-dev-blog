@@ -1,15 +1,33 @@
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { IconContext } from "react-icons";
 import { CgClose } from "react-icons/cg";
-import { Form, useNavigation } from "react-router-dom";
+import {
+  Form,
+  useActionData,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
 
 type Props = {
   closeModal: () => void;
+  showMessage: (message: string) => void;
 };
 
 const LoginModal = (props: Props) => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+  const actionData = useActionData();
+  const nav = useNavigate();
+
+  useEffect(() => {
+    if (actionData === "SUCCESS") {
+      props.closeModal();
+      props.showMessage("Logged in succesfully");
+      nav("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [actionData]);
 
   return createPortal(
     <Form method="post" action="/login">

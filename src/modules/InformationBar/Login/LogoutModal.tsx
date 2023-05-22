@@ -2,7 +2,8 @@ import { createPortal } from "react-dom";
 import { useSubmit } from "react-router-dom";
 
 type Props = {
-  closeModal: (message?: string) => void;
+  closeModal: () => void;
+  showMessage: (message: string) => void;
 };
 
 const LogoutModal = (props: Props) => {
@@ -10,14 +11,15 @@ const LogoutModal = (props: Props) => {
 
   const onConfirmHandle = () => {
     submit(null, { action: "/logout", method: "post" });
-    props.closeModal("Logout Successful");
+    props.showMessage("Logout Successful");
+    props.closeModal();
   };
 
   return createPortal(
     <>
       <div
         className="bg-black/25 fixed top-0 left-0 w-full h-screen z-10 flex"
-        onClick={() => props.closeModal()}
+        onClick={props.closeModal}
       />
       <div
         className="element-bg fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 rounded-3xl 
@@ -35,7 +37,7 @@ const LogoutModal = (props: Props) => {
           </button>
           <button
             className="clickable-bg rounded-xl py-2 px-8 self-end text-slate-200 font-bold text-lg"
-            onClick={() => props.closeModal()}
+            onClick={props.closeModal}
           >
             No
           </button>

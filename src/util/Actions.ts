@@ -88,7 +88,7 @@ const sendLoginAction = async ({ request }: any) => {
   localStorage.setItem("accessToken", response.access_token);
   localStorage.setItem("refreshToken", response.refresh_token);
   localStorage.setItem("tokenExpiration", tokenExpiration.toISOString());
-  return redirect("/");
+  return "SUCCESS";
 };
 
 const sendLogoutAction = async () => {

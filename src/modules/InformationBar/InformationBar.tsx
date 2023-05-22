@@ -50,6 +50,11 @@ const InformationBar = () => {
       setMessageModal(true);
     }
   };
+
+  const showMessage = (message: string) => {
+    setMessage(message);
+    setMessageModal(true);
+  };
   return (
     <>
       {messageModal && (
@@ -58,8 +63,12 @@ const InformationBar = () => {
           closeModal={() => setMessageModal(false)}
         />
       )}
-      {loginModal && <LoginModal closeModal={closeLoginModal} />}
-      {logoutModal && <LogoutModal closeModal={closeLogoutModal} />}
+      {loginModal && (
+        <LoginModal closeModal={closeLoginModal} showMessage={showMessage} />
+      )}
+      {logoutModal && (
+        <LogoutModal closeModal={closeLogoutModal} showMessage={showMessage} />
+      )}
       <div
         className={`element-bg
         transition-all ease-in-out duration-500
