@@ -1,18 +1,25 @@
+import { useState } from "react";
+
 const useAccessToken = () => {
-  const accessToken = localStorage.getItem("accessToken");
-  const hasToken = Boolean(accessToken);
-  const refreshToken = localStorage.getItem("refreshToken");
+  const [accessToken, setAccessToken] = useState(
+    localStorage.getItem("accessToken")
+  );
+  const [hasToken, setHasToken] = useState(
+    accessToken && accessToken !== "EXPIRED"
+  );
+  const [refreshToken, setRefreshToken] = useState(
+    localStorage.getItem("refreshToken")
+  );
   const tokenExpiration = new Date(
     localStorage.getItem("tokenExpiration") as string
   );
-  const tokenDuration = tokenExpiration.getTime() - new Date().getTime();
-  if (tokenDuration < 0) {
-    return {
-      accessToken: "EXPIRED",
-      hasToken: false,
-      refreshToken,
-      tokenDuration,
-    };
+  const [tokenDuration, setTokenExpiration] = useState(
+    tokenExpiration.getTime() - new Date().getTime()
+  );
+  if (tokenDuration <= 0) {
+    localStorage.setItem("accessToken", "EXPIRED");
+    setAccessToken("EXPIRED");
+    setHasToken(false);
   }
   return { accessToken, hasToken, refreshToken, tokenDuration };
 };

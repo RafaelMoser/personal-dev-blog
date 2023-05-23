@@ -1,4 +1,7 @@
 import { Form, useActionData, useLoaderData } from "react-router-dom";
+import { Editor } from "@tinymce/tinymce-react";
+import { useState, useEffect } from "react";
+import MessageModal from "../UI/MessageModal";
 
 type BlogInfo = {
   profileImageUrl: string;
@@ -11,10 +14,28 @@ type BlogInfo = {
 
 const EditBlogInfo = () => {
   const loadedData = useLoaderData() as BlogInfo;
-  const actionResponse = useActionData();
+  const [messageModal, setMessageModal] = useState(false);
+  const [message, setMessage] = useState("");
+  const actionData = useActionData() as string;
 
+  useEffect(() => {
+    if (actionData === "SUCCESS") {
+      setMessageModal(true);
+      setMessage("Blog info updated");
+    } else if (actionData === "VALIDATION_ERROR") {
+      setMessageModal(true);
+      setMessage("A validation error occurred");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [actionData]);
   return (
     <>
+      {messageModal && (
+        <MessageModal
+          message={message}
+          closeModal={() => setMessageModal(false)}
+        />
+      )}
       <Form
         method="post"
         className="flex flex-col element-bg rounded-xl p-4 space-y-2"
@@ -108,7 +129,6 @@ const EditBlogInfo = () => {
         </div>
         <button className="clickable-bg p-2 self-end rounded-md">Submit</button>
       </Form>
-      {actionResponse && <p>Success!</p>}
     </>
   );
 };

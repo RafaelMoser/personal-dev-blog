@@ -12,15 +12,19 @@ type Props = {
 const EditArticle = (props: Props) => {
   const [messageModal, setMessageModal] = useState(false);
   const [message, setMessage] = useState("");
-  const actionData = useActionData();
+  const actionData = useActionData() as string;
 
   useEffect(() => {
     if (actionData === "SUCCESS") {
+      setMessageModal(true);
       setMessage(
         props.new
           ? "New article published successfully"
           : "Article updated successfully"
       );
+    } else if (actionData === "VALIDATION_ERROR") {
+      setMessageModal(true);
+      setMessage("A validation error occurred");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [actionData]);

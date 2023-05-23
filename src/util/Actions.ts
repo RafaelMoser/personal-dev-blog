@@ -6,18 +6,20 @@ const SERVER_URL = "http://localhost:5000";
 
 const updateBlogInfoAction = async ({ request }: any) => {
   const data = await request.formData();
-  const email = data.get("email");
-  const github = data.get("github");
-  const linkedin = data.get("linkedin");
+  const email = data.get("email").trim();
+  const github = data.get("github").trim();
+  const linkedin = data.get("linkedin").trim();
   const blogData = {
-    profileImageUrl: data.get("profileImageUrl"),
-    infoBlurb: data.get("infoBlurb"),
-    aboutMe: data.get("aboutMe"),
-    ...(email.trim() && { email }),
-    ...(github.trim() && { github }),
-    ...(linkedin.trim() && { linkedin }),
+    profileImageUrl: data.get("profileImageUrl").trim(),
+    infoBlurb: data.get("infoBlurb").trim(),
+    aboutMe: data.get("aboutMe").trim(),
+    ...(email && { email }),
+    ...(github && { github }),
+    ...(linkedin && { linkedin }),
   };
-
+  if (!blogData.profileImageUrl || !blogData.infoBlurb || !blogData.aboutMe) {
+    return "VALIDATION_ERROR";
+  }
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -33,11 +35,14 @@ const updateBlogInfoAction = async ({ request }: any) => {
 
 const updateArticleAction = async ({ request, params }: any) => {
   const data = await request.formData();
-  const blogData = {
+  const articleData = {
     title: data.get("title"),
     articleBody: data.get("articleBody"),
   };
 
+  if (!articleData.title || !articleData.articleBody) {
+    return "VALIDATION_ERROR";
+  }
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -45,7 +50,7 @@ const updateArticleAction = async ({ request, params }: any) => {
   };
 
   await axios
-    .patch(`${SERVER_URL}/article/single/${params.nanoId}`, blogData, config)
+    .patch(`${SERVER_URL}/article/single/${params.nanoId}`, articleData, config)
     .then((res) => res.data);
 
   return "SUCCESS";
@@ -53,19 +58,21 @@ const updateArticleAction = async ({ request, params }: any) => {
 
 const newArticleAction = async ({ request }: any) => {
   const data = await request.formData();
-  console.log(data.get("articleBody"));
-  const blogData = {
-    title: data.get("title"),
-    articleBody: data.get("articleBody"),
+  const articleData = {
+    title: data.get("title").trim(),
+    articleBody: data.get("articleBody").trim(),
   };
 
+  if (!articleData.title || !articleData.articleBody) {
+    return "VALIDATION_ERROR";
+  }
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
     },
   };
   await axios
-    .put(`${SERVER_URL}/article/new`, blogData, config)
+    .put(`${SERVER_URL}/article/new`, articleData, config)
     .then((res) => res.data);
 
   return "SUCCESS";
