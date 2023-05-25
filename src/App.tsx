@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         action: actions.sendLogoutAction,
       },
       {
-        element: <HomePage blogTitle={BLOG_NAME} />,
+        element: <HomePage />,
         id: "home",
         loader: loaders.articlePageLoader,
         children: [

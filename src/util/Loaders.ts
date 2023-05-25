@@ -16,6 +16,10 @@ const loadPageCount = async () => {
     .then((res) => res.data);
 };
 
+const loadBlogTitle = async () => {
+  return await axios.get(`${SERVER_URL}/blogInfo/name`).then((res) => res.data);
+};
+
 const articlePageLoader = ({ params }: any) => {
   const page = parseInt(params.page) || 1;
   return defer({
@@ -59,4 +63,5 @@ export {
   singleArticleLoader,
   loginRequest,
   blogUpdateDataLoader,
+  loadBlogTitle,
 };
