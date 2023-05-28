@@ -10,6 +10,7 @@ const updateBlogInfoAction = async ({ request }: any) => {
   const github = data.get("github").trim();
   const linkedin = data.get("linkedin").trim();
   const blogData = {
+    blogTitle: data.get("blogTitle").trim(),
     profileImageUrl: data.get("profileImageUrl").trim(),
     infoBlurb: data.get("infoBlurb").trim(),
     aboutMe: data.get("aboutMe").trim(),

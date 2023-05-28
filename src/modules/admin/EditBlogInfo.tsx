@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import MessageModal from "../UI/MessageModal";
 
 type BlogInfo = {
+  blogTitle: string;
   profileImageUrl: string;
   infoBlurb: string;
   github?: string;
@@ -40,6 +41,18 @@ const EditBlogInfo = () => {
         method="post"
         className="flex flex-col element-bg rounded-xl p-4 space-y-2"
       >
+        <div className="flex flex-col">
+          <label htmlFor="blog title" className="font-bold text-slate-300">
+            Blog Title
+          </label>
+          <input
+            id="blog title"
+            type="text"
+            name="blogTitle"
+            className="textinput-bg rounded-md p-2"
+            defaultValue={loadedData.blogTitle}
+          />
+        </div>
         <div className="flex flex-col">
           <label
             htmlFor="profile image url"
